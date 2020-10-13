@@ -124,7 +124,7 @@ variable "bastion_upgrade" {
 
 variable "ssh_public_key" {
   description = "the content of the ssh public key used to access the bastion. set this or the ssh_public_key_path"
-  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDaoBlXKO/7S1UDaSiq7ObDnJW8YY+n13GCavC8j7xkV+r1gADYn2cjbWzH72XRiFWd0KGarAd+pGNrdlwomI6NXeMXkrO9cKMbmS7q13lcrV+ZMn8tnak5u9/RY2NxK1K5SUaugSn4RaqFrvbGG2ibII23dx9+t0q3PHTGsptk/CdYGEyAolsUrBFI9Pah0YtQ2C89nM034Rul9odLs4cnhkxoznxQV/TOa1bhYrFwx0dHYLhLWDweiq0Usun/9X6i84BODURMscgJ0+JIzf6c8cQcRwRR6bTpz69UpPTBFIqaTqympssB8EpuHFyz6NVKfh/raxde8l7DVsI2BTJx Stefan Oehrli 2048 OCI Key"
+  default     = ""
   type        = string
 }
 
