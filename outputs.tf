@@ -25,12 +25,12 @@
 # display public IPs jumphost
 output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
-  value = data.oci_core_instance.bastion.*.public_ip
+  value = oci_core_instance.bastion.*.public_ip
 }
 
-# output "bastion_dns_records" {
-#   description = "The DNS records for the bastion server instances."
-#   value = [data.oci_dns_record.bastion.*.rdata]
-# }
+output "bastion_dns_records" {
+  description = "The DNS records for the bastion server instances."
+  value = [oci_dns_record.bastion.*.rdata]
+}
 
 # --- EOF -------------------------------------------------------------------
