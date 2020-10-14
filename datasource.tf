@@ -27,6 +27,11 @@ data "oci_identity_tenancy" "tenancy" {
   tenancy_id = var.tenancy_ocid
 }
 
+# get compartment information
+data "oci_identity_compartment" "compartment" {
+  id = var.compartment_id
+}
+
 # get the tenancy's home region
 data "oci_identity_regions" "home_region" {
   filter {
@@ -35,11 +40,12 @@ data "oci_identity_regions" "home_region" {
   }
 }
 
-# define the autonomous linux image
-data "oci_core_images" "autonomous_images" {
-  compartment_id   = var.compartment_id
-  operating_system = "Oracle Autonomous Linux"
-  shape            = var.bastion_shape
-  sort_by          = "TIMECREATED"
+# define the Oracle linux image
+data "oci_core_images" "oracle_images" {
+  compartment_id           = var.compartment_id
+  operating_system         = "Oracle Linux"
+  operating_system_version = var.bastion_os_version
+  shape                    = var.bastion_shape
+  sort_by                  = "TIMECREATED"
 }
 # --- EOF -------------------------------------------------------------------

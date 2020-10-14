@@ -17,12 +17,12 @@
 # see git revision history for more information on changes/updates
 # ---------------------------------------------------------------------------
 
-# get lab compartment resource information
-# output "vcn_id" {
-#   value       = module.tvdlab-vcn.vcn_id
-# }
-
 # display public IPs jumphost
+output "bastion_id" {
+  description = "OCID of the bastion server instances."
+  value = oci_core_instance.bastion.*.id
+}
+
 output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
   value = oci_core_instance.bastion.*.public_ip
@@ -32,5 +32,4 @@ output "bastion_dns_records" {
   description = "The DNS records for the bastion server instances."
   value = [oci_dns_record.bastion.*.rdata]
 }
-
 # --- EOF -------------------------------------------------------------------
