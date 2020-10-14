@@ -18,16 +18,10 @@
 # ---------------------------------------------------------------------------
 
 locals {
-  all_protocols       = "all"
   availability_domain = data.oci_identity_availability_domains.ad_list.availability_domains[var.availability_domain - 1].name
-  icmp_protocol       = 1
-  tcp_protocol        = 6
-  ssh_port            = 22
-  anywhere            = "0.0.0.0/0"
-  vcn_shortname       = lower(replace(var.vcn_name, "-", ""))
-  public_dns_label    = "public"
-  private_dns_label   = "private"
-  bastion_image_id    = var.bastion_image_id == "Autonomous" ? data.oci_core_images.autonomous_images.images.0.id : var.bastion_image_id
+  resource_name       = var.resource_name == "" ? data.oci_identity_compartment.compartment.name : var.resource_name 
+  resource_shortname  = lower(replace(local.resource_name, "-", ""))
+  bastion_image_id    = var.bastion_image_id == "OEL" ? data.oci_core_images.oracle_images.images.0.id : var.bastion_image_id
   #default_private_dns = cidrhost(cidrsubnet(var.vcn_cidr, var.private_newbits, var.private_netnum), var.tvd_dns_hostnum)
   #vcn_cidr            = data.oci_core_vcn.vcn.cidr_block
 }
