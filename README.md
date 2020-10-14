@@ -12,24 +12,62 @@ It creates the following resources:
 
 The module can be parametrized by the number of participants. This will then create n numbers of bastion hosts.
 
-## Documentation
+## Prerequisites
 
-### Pre-requisites
+- An OCI account
+- Install [Terraform](https://www.terraform.io/downloads.html)
+- Create a Terraform Configuration
 
-tbd
+**HINT** This terraform module does use `count` to create multiple identical resources. Due to this at least Terraform version 0.13.0+ is required.
 
-### Instructions
+## Quickstart
 
-tbd
+The module is available in [Terraform registry](https://registry.terraform.io/modules/Trivadis/tvdlab-bastion/oci/latest). You may either us it via registry or clone [terraform-oci-tvdlab-bastion](https://github.com/Trivadis/terraform-oci-tvdlab-bastion) from github.
+
+Add the module to the `main.tf` with the mandatory parameter. Whereby the `bastion_subnet` does expect a list of subnet IDs where to create the bastion hosts. Ideally create with the terraform module [tvdlab-vcn](https://registry.terraform.io/modules/Trivadis/tvdlab-vcn/oci/latest).
+
+```bash
+module "tvdlab-bastion" {
+  source  = "Trivadis/tvdlab-bastion/oci"
+  version = "1.0.0"
+
+  # - Mandatory Parameters --------------------------------------------------
+  tenancy_ocid          = var.tenancy_ocid
+  region                = var.region
+  compartment_id        = var.compartment_id
+  ssh_public_key_path   = var.ssh_public_key_path
+  bastion_subnet        = module.tvdlab-vcn.public_subnet_id
+}
+```
+
+To create multiple bastion hosts in different VCNs just specify the `tvd_participants` parameter. The following example will create 3 bastion hosts in the provided subnets. It is expected that `bastion_subnet` contains 3 different subnets.
+
+```bash
+module "tvdlab-bastion" {
+  source  = "Trivadis/tvdlab-bastion/oci"
+  version = "1.0.0"
+
+  # - Mandatory Parameters --------------------------------------------------
+  tenancy_ocid          = var.tenancy_ocid
+  region                = var.region
+  compartment_id        = var.compartment_id
+  ssh_public_key_path   = var.ssh_public_key_path
+  bastion_subnet        = module.tvdlab-vcn.public_subnet_id
+  tvd_participants      = 3
+}
+```
+
+The module can be customized by a couple of additional parameter. See [variables](./doc/variables.md) for more information about customisation. The folder [examples](examples) does contain an example files for [main.tf](examples/main.tf), [variables.tv](examples/variables.tf) and [terraform.tfvars](examples/terraform.tfvars.example).
 
 ## Related Documentation, Blog
 
 - [Oracle Cloud Infrastructure Documentation](https://docs.cloud.oracle.com/iaas/Content/home.htm)
 - [Terraform OCI Provider Documentation](https://www.terraform.io/docs/providers/oci/index.html)
+- [Terraform Creating Modules](https://www.terraform.io/docs/modules/index.html)
 
 ## Projects using this module
 
-tbd
+- [terraform-oci-tvdlab-base](https://github.com/Trivadis/terraform-oci-tvdlab-base) A reusable and extensible Terraform module that provisions a Trivadis LAB on Oracle Cloud Infrastructure.
 
 ## Releases and Changelog
 
