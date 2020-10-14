@@ -25,7 +25,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_bootstrap`        | Bootstrap script to provision the bastion host.                                                         |                   | n/a              |
 | `bastion_dns_registration` | Whether to register the bastion host in DNS zone.                                                       | ftrue/false       | true             |
 | `bastion_enabled`          | Whether to create the bastion host or not.                                                              | true/false        | false            |
-| `bastion_image_id`         | A Provide a custom image id for the bastion host or leave as OEL.                                       | OCID              | OEL              |
+| `bastion_image_id`         | Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).                                       | OCID              | OEL              |
 | `bastion_name`             | A Name portion of bastion host.                                                                         |                   | bastion          |
 | `bastion_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `bastion_image_id` |                   | 7.8              |
 | `bastion_shape`            | The shape of bastion instance.                                                                          |                   | VM.Standard.E2.1 |
