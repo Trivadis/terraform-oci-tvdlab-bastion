@@ -79,7 +79,7 @@ variable "bastion_name" {
 }
 
 variable "bastion_image_id" {
-  description = "Provide a custom image id for the bastion host or leave as Autonomous."
+  description = "Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux)."
   default     = "OEL"
   type        = string
 }
