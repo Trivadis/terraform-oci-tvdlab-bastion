@@ -17,18 +17,38 @@
 # see git revision history for more information on changes/updates
 # ---------------------------------------------------------------------------
 
-module "tvdlab-vcn" {
-  source  = "Trivadis/tvdlab-vcn/oci"
-  # version = "0.0.1"
-  # provider parameters
-  region = var.region
 
+module "tvdlab-bastion" {
+  source  = "Trivadis/tvdlab-bastion/oci"
+  version = "1.0.0"
+
+  # - Mandatory Parameters --------------------------------------------------
+  tenancy_ocid   = var.tenancy_ocid
+  region         = var.region
+  compartment_id = var.compartment_id
+  # either ssh_public_key or ssh_public_key_path must be specified
+  # ssh_public_key      = var.ssh_public_key
+  ssh_public_key_path = var.ssh_public_key_path
+  bastion_subnet      = module.tvdlab-vcn.public_subnet_id
+
+  # - Optional Parameters ---------------------------------------------------
   # general oci parameters
-  compartment_id           = var.compartment_id
-  nat_gateway_enabled      = true
-  internet_gateway_enabled = true
-  vcn_name                 = var.vcn_name
-  vcn_cidr                 = var.vcn_cidr
-  tvd_participants         = var.tvd_participants
+  availability_domain = var.availability_domain
+  label_prefix        = var.label_prefix
+  tags                = var.tags
+
+  # Lab Configuration
+  resource_name    = var.resource_name
+  tvd_domain       = var.tvd_domain
+  tvd_participants = var.tvd_participants
+
+  # bastion parameters
+  bastion_enabled          = var.bastion_enabled
+  bastion_dns_registration = var.bastion_dns_registration
+  bastion_name             = var.bastion_name
+  bastion_image_id         = var.bastion_image_id
+  bastion_shape            = var.bastion_shape
+  bastion_bootstrap        = var.bastion_bootstrap
+  bastion_state            = var.bastion_state
 }
 # --- EOF -------------------------------------------------------------------

@@ -14,27 +14,34 @@
 #              at http://www.apache.org/licenses/
 # ---------------------------------------------------------------------------
 
-# provider identity parameters
-fingerprint           = ""
-private_key_path      = ""
-region                = "eu-zurich-1"
-tenancy_ocid          = ""
-user_ocid             = ""
+# provider identity parameters ----------------------------------------------
+fingerprint               = ""
+private_key_path          = ""
+region                    = "eu-zurich-1"
+tenancy_ocid              = ""
+user_ocid                 = ""
 
-# general oci parameters
-compartment_id        = ""
+# general oci parameters ----------------------------------------------------
+compartment_id            = ""
+label_prefix              = "none"
+resource_name             = ""
+availability_domain       = 1
+tags                      = {}
 
-# vcn parameters
-internet_gateway_enabled  = true
-nat_gateway_enabled       = true
-service_gateway_enabled   = false
-vcn_cidr                  = "10.0.0.0/16"
-vcn_name                  = "O-SEC"
+# Bastion Host Parameter ----------------------------------------------------
+bastion_enabled           = false
+bastion_dns_registration  = false
+bastion_name              = "bastion"
+bastion_image_id          = "OEL"
+bastion_os_version        = "7.8"
+bastion_shape             = "VM.Standard.E2.1"
+bastion_state             = "RUNNING"
+bastion_bootstrap         = ""
+ssh_public_key            = ""
+ssh_public_key_path       = ""
+#bastion_subnet 
 
-# Trivadis LAB parameters
+# Trivadis LAB specific parameter -------------------------------------------
 tvd_participants          = 1
-
-tags = {
-  training = "O-SEC"
-}
+tvd_domain                = "trivadislabs.com"
 # --- EOF -------------------------------------------------------------------
