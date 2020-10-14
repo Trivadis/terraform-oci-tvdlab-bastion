@@ -17,85 +17,123 @@
 # see git revision history for more information on changes/updates
 # ---------------------------------------------------------------------------
 
-# provider identity parameters
-variable "fingerprint" {
-  description = "fingerprint of oci api private key"
+# provider identity parameters ----------------------------------------------
+variable "tenancy_ocid" {
+  description = "tenancy id where to create the resources"
   type        = string
-  default     = ""
-}
-
-variable "private_key_path" {
-  description = "path to oci api private key used"
-  type        = string
-  default     = ""
 }
 
 variable "region" {
   # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
-  description = "the oci region where resources will be created"
+  description = "The OCI region where resources will be created"
   type        = string
 }
 
-variable "tenancy_ocid" {
-  description = "tenancy id where to create the sources"
-  type        = string
-}
-
-variable "user_ocid" {
-  description = "id of user that terraform will use to create the resources"
-  type        = string
-}
-
-# general oci parameters
+# general oci parameters ----------------------------------------------------
 variable "compartment_id" {
-  description = "compartment id where to create all resources"
+  description = "OCID of the compartment where to create all resources"
   type        = string
 }
 
 variable "label_prefix" {
-  description = "a string that will be prepended to all resources"
+  description = "A string that will be prepended to all resources"
   type        = string
   default     = "none"
 }
 
-# vcn parameters
-variable "internet_gateway_enabled" {
-  description = "whether to create the internet gateway"
+variable "resource_name" {
+  description = "user-friendly string to name all resource. If undefined it will be derived from compartment name. "
+  type        = string
+  default     = ""
+}
+
+variable "availability_domain" {
+  description = "the AD to place the bastion host"
+  default     = 1
+  type        = number
+}
+
+variable "tags" {
+  description = "A simple key-value pairs to tag the resources created"
+  type        = map(any)
+  default     = {}
+}
+
+# Bastion Host Parameter ----------------------------------------------------
+variable "bastion_enabled" {
+  description = "whether to create the bastion"
   default     = true
   type        = bool
 }
 
-variable "nat_gateway_enabled" {
-  description = "whether to create a nat gateway in the vcn"
-  default     = true
-  type        = bool
-}
-
-variable "service_gateway_enabled" {
-  description = "whether to create a service gateway"
+variable "bastion_dns_registration" {
+  description = "whether to register the bastion host in DNS zone"
   default     = false
   type        = bool
 }
 
-variable "vcn_cidr" {
-  description = "cidr block of VCN"
-  default     = "10.0.0.0/16"
+variable "bastion_name" {
+  description = "Name portion of bastion host"
+  default     = "bastion"
   type        = string
 }
 
-variable "vcn_name" {
-  description = "user-friendly name of to use for the vcn to be appended to the label_prefix"
+variable "bastion_image_id" {
+  description = "Provide a custom image id for the bastion host or leave as Autonomous."
+  default     = "OEL"
   type        = string
 }
 
+variable "bastion_os_version" {
+  description = "Define the default OS version for Oracle Linux."
+  default     = "7.8"
+  type        = string
+}
+
+variable "bastion_shape" {
+  description = "The shape of bastion instance."
+  default     = "VM.Standard.E2.1"
+  type        = string
+}
+
+variable "bastion_state" {
+  description = "Whether bastion host should be either RUNNING or STOPPED state. "
+  default     = "RUNNING"
+}
+
+variable "bastion_bootstrap" {
+  description = "Bootstrap script."
+  default     = ""
+  type        = string
+}
+
+variable "ssh_public_key" {
+  description = "the content of the ssh public key used to access the bastion. set this or the ssh_public_key_path"
+  default     = ""
+  type        = string
+}
+
+variable "ssh_public_key_path" {
+  description = "path to the ssh public key used to access the bastion. set this or the ssh_public_key"
+  default     = ""
+  type        = string
+}
+
+variable "bastion_subnet" {
+  description = "List of subnets for the bastion hosts"
+  type        = list(string)
+}
+
+# Trivadis LAB specific parameter -------------------------------------------
 variable "tvd_participants" {
-  description = "The number of VCNs to create"
+  description = "The number of VCN to create"
   type        = number
   default     = 1
 }
 
-variable "tags" {
-  description = "simple key-value pairs to tag the resources created"
-  type        = map(any)
+variable "tvd_domain" {
+  description = "The domain name of the LAB environment"
+  type        = string
+  default     = "trivadislabs.com"
 }
 # --- EOF -------------------------------------------------------------------
