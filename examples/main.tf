@@ -51,4 +51,10 @@ module "tvdlab-bastion" {
   bastion_bootstrap        = var.bastion_bootstrap
   bastion_state            = var.bastion_state
 }
+
+# display public IPs of bastion hosts
+output "bastion_public_ip" {
+  description = "The public IP address of the bastion server instances."
+  value = module.tvdlab-bastion.bastion_public_ip
+}
 # --- EOF -------------------------------------------------------------------
