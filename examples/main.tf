@@ -41,7 +41,7 @@ module "tvdlab-bastion" {
   region         = var.region
   compartment_id = var.compartment_id
   # either ssh_public_key or ssh_public_key_path must be specified
-  # ssh_public_key      = var.ssh_public_key
+  ssh_public_key      = var.ssh_public_key
   ssh_public_key_path = var.ssh_public_key_path
   bastion_subnet      = module.tvdlab-vcn.public_subnet_id
 
