@@ -29,14 +29,6 @@ data "oci_identity_compartment" "compartment" {
   id = var.compartment_id
 }
 
-# get the tenancy's home region
-data "oci_identity_regions" "home_region" {
-  filter {
-    name   = "key"
-    values = [data.oci_identity_tenancy.tenancy.home_region_key]
-  }
-}
-
 # define the Oracle linux image
 data "oci_core_images" "oracle_images" {
   compartment_id           = var.compartment_id
