@@ -35,6 +35,7 @@ bastion_name              = "bastion"
 bastion_image_id          = "OEL"
 bastion_os_version        = "7.8"
 bastion_shape             = "VM.Standard.E2.1"
+bastion_boot_volume_size  = 50
 bastion_state             = "RUNNING"
 bastion_bootstrap         = ""
 ssh_public_key            = ""
