@@ -21,20 +21,20 @@ Variables for the configuration of the terraform module, defined in [variables](
 
 ## Bastion Host
 
-| Parameter                  | Description                                                                                             | Values            | Default          |
-|----------------------------|---------------------------------------------------------------------------------------------------------|-------------------|------------------|
-| `bastion_bootstrap`        | Bootstrap script to provision the bastion host.                                                         |                   | n/a              |
-| `bastion_dns_registration` | Whether to register the bastion host in DNS zone.                                                       | ftrue/false       | true             |
-| `bastion_enabled`          | Whether to create the bastion host or not.                                                              | true/false        | false            |
-| `bastion_image_id`         | Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).                                       | OCID              | OEL              |
-| `bastion_name`             | A Name portion of bastion host.                                                                         |                   | bastion          |
-| `bastion_os_version`       | Define the default OS version for Oracle Linux. This is used to identify the default `bastion_image_id` |                   | 7.8              |
-| `bastion_shape`            | The shape of bastion instance.                                                                          |                   | VM.Standard.E2.1 |
-| `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                         | RUNNING / STOPPED | RUNNING          |
-| `bastion_subnet`           | List of subnets for the bastion hosts                                                                   |                   | n/a              |
-| `ssh_public_key_path`      | Path to the ssh public key used to access the bastion. set this or the `ssh_public_key`                 |                   | n/a              |
-| `ssh_public_key`           | The content of the ssh public key used to access the bastion. set this or the `ssh_public_key_path`     |                   | n/a              |
-
+| Parameter                  | Description                                                                                         | Values            | Default          |
+|----------------------------|-----------------------------------------------------------------------------------------------------|-------------------|------------------|
+| `bastion_bootstrap`        | Bootstrap script to provision the bastion host.                                                     |                   | n/a              |
+| `bastion_dns_registration` | Whether to register the bastion host in DNS zone.                                                   | ftrue/false       | true             |
+| `bastion_enabled`          | Whether to create the bastion host or not.                                                          | true/false        | false            |
+| `bastion_image_id`         | Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).           | OCID              | OEL              |
+| `bastion_name`             | A Name portion of bastion host.                                                                     |                   | bastion          |
+| `bastion_os`               | Base OS for the bastion host. This is used to identify the default `bastion_image_id`               |                   | Oracle Linux     |
+| `bastion_os_version`       | Base OS version for the bastion host. This is used to identify the default `bastion_image_id`       |                   | 7.8              |
+| `bastion_shape`            | The shape of bastion instance.                                                                      |                   | VM.Standard.E2.1 |
+| `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                     | RUNNING / STOPPED | RUNNING          |
+| `bastion_subnet`           | List of subnets for the bastion hosts                                                               |                   | n/a              |
+| `ssh_public_key_path`      | Path to the ssh public key used to access the bastion. set this or the `ssh_public_key`             |                   | n/a              |
+| `ssh_public_key`           | The content of the ssh public key used to access the bastion. set this or the `ssh_public_key_path` |                   | n/a              |
 
 ## Trivadis LAB
 
