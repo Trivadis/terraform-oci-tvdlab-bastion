@@ -64,6 +64,9 @@ module "tvdlab-bastion" {
   bastion_shape            = var.bastion_shape
   bastion_bootstrap        = var.bastion_bootstrap
   bastion_state            = var.bastion_state
+  bastion_os               = var.bastion_os
+  bastion_os_version       = var.bastion_os_version
+  bastion_boot_volume_size = var.bastion_boot_volume_size
 }
 
 # display public IPs of bastion hosts
