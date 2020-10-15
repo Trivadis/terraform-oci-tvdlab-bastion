@@ -15,7 +15,7 @@
 # ---------------------------------------------------------------------------
 
 locals {
-  availability_domain = data.oci_identity_availability_domains.ad_list.availability_domains[var.availability_domain - 1].name
+  availability_domain = data.oci_identity_availability_domains.ad_list.availability_domains[var.ad_index - 1].name
   resource_name       = var.resource_name == "" ? data.oci_identity_compartment.compartment.name : var.resource_name 
   resource_shortname  = lower(replace(local.resource_name, "-", ""))
   bastion_image_id    = var.bastion_image_id == "OEL" ? data.oci_core_images.oracle_images.images.0.id : var.bastion_image_id
