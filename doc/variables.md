@@ -32,6 +32,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_os_version`       | Base OS version for the bastion host. This is used to identify the default `bastion_image_id`       |                   | 7.8              |
 | `bastion_shape`            | The shape of bastion instance.                                                                      |                   | VM.Standard.E2.1 |
 | `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                     | RUNNING / STOPPED | RUNNING          |
+| `bastion_boot_volume_size` | Size of the boot volume.                                                                             |                   | 50              |
 | `bastion_subnet`           | List of subnets for the bastion hosts                                                               |                   | n/a              |
 | `ssh_public_key_path`      | Path to the ssh public key used to access the bastion. set this or the `ssh_public_key`             |                   | n/a              |
 | `ssh_public_key`           | The content of the ssh public key used to access the bastion. set this or the `ssh_public_key_path` |                   | n/a              |

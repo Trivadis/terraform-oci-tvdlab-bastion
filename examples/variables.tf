@@ -99,6 +99,12 @@ variable "bastion_shape" {
   type        = string
 }
 
+variable "bastion_boot_volume_size" {
+  description = "Size of the boot volume."
+  default     = 50
+  type        = number
+}
+
 variable "bastion_state" {
   description = "Whether bastion host should be either RUNNING or STOPPED state. "
   default     = "RUNNING"
