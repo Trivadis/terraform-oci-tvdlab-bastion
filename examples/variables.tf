@@ -44,8 +44,8 @@ variable "resource_name" {
   default     = ""
 }
 
-variable "availability_domain" {
-  description = "the AD to place the bastion host"
+variable "ad_index" {
+  description = "The index of the availability domain. This is used to identify the availability_domain place the compute instances."
   default     = 1
   type        = number
 }
