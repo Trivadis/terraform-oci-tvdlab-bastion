@@ -30,7 +30,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_name`             | A Name portion of bastion host.                                                                     |                   | bastion          |
 | `bastion_os`               | Base OS for the bastion host. This is used to identify the default `bastion_image_id`               |                   | Oracle Linux     |
 | `bastion_os_version`       | Base OS version for the bastion host. This is used to identify the default `bastion_image_id`       |                   | 7.8              |
-| `bastion_shape`            | The shape of bastion instance.                                                                      |                   | VM.Standard2.1 |
+| `bastion_shape`            | The shape of bastion instance.                                                                      |                   | VM.Standard.E2.1 |
 | `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                     | RUNNING / STOPPED | RUNNING          |
 | `bastion_boot_volume_size` | Size of the boot volume.                                                                             |                   | 50              |
 | `bastion_subnet`           | List of subnets for the bastion hosts                                                               |                   | n/a              |
