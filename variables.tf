@@ -81,8 +81,14 @@ variable "bastion_image_id" {
   type        = string
 }
 
+variable "bastion_os" {
+  description = "Base OS for the bastion host."
+  default     = "Oracle Linux"
+  type        = string
+}
+
 variable "bastion_os_version" {
-  description = "Define the default OS version for Oracle Linux."
+  description = "Define Base OS version for the bastion host."
   default     = "7.8"
   type        = string
 }
