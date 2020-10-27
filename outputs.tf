@@ -37,6 +37,6 @@ output "bastion_private_ip" {
 
 output "bastion_dns_records" {
   description = "The DNS records for the bastion server instances."
-  value = [oci_dns_record.bastion.*.rdata]
+  value = [oci_dns_rrset.bastion.*.rdata]
 }
 # --- EOF -------------------------------------------------------------------
