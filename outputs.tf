@@ -20,9 +20,19 @@ output "bastion_id" {
   value = oci_core_instance.bastion.*.id
 }
 
+output "bastion_hostname" {
+  description = "The hostname for VNIC's primary private IP of the bastion server instances."
+  value = oci_core_instance.bastion.*.hostname_label
+}
+
 output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
   value = oci_core_instance.bastion.*.public_ip
+}
+
+output "bastion_private_ip" {
+  description = "The private IP address of the bastion server instances."
+  value = oci_core_instance.bastion.*.private_ip
 }
 
 output "bastion_dns_records" {
