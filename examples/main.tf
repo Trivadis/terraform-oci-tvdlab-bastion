@@ -34,7 +34,7 @@ provider "oci" {
 
 module "tvdlab-bastion" {
   source  = "Trivadis/tvdlab-bastion/oci"
-  version = "1.0.0"
+  version = ">= 1.1.0"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
@@ -67,6 +67,16 @@ module "tvdlab-bastion" {
   bastion_os               = var.bastion_os
   bastion_os_version       = var.bastion_os_version
   bastion_boot_volume_size = var.bastion_boot_volume_size
+  hosts_file               = var.hosts_file
+  yum_upgrade              = var.yum_upgrade
+  guacamole_enabled        = var.guacamole_enabled
+  guacamole_connections    = var.guacamole_connections
+  fail2ban_config          = var.fail2ban_config
+  guacamole_user           = var.guacamole_user
+  guacadmin_user           = var.guacadmin_user
+  guacadmin_password       = var.guacadmin_password
+  admin_email              = var.admin_email
+  staging                  = var.staging
 }
 
 # display public IPs of bastion hosts
