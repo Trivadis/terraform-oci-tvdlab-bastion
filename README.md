@@ -6,7 +6,7 @@ A reusable and extensible Terraform module that provisions a Trivadis LAB Bastio
 
 It creates the following resources:
 
-* A bastion host for a given VCN
+* A bastion host for a given VCN including an optional *Apache* *Guacamole* remote desktop gateway.
 * Optional DNS zone registration for the public IP
 * Optional n-number of bastion hosts for multiple VCNs. This is used to build several identical environments for a training and laboratory environment.
 
@@ -29,7 +29,7 @@ Add the module to the `main.tf` with the mandatory parameter. Whereby the `basti
 ```bash
 module "tvdlab-bastion" {
   source  = "Trivadis/tvdlab-bastion/oci"
-  version = "1.0.0"
+  version = ">= 1.1.0"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid          = var.tenancy_ocid
@@ -57,13 +57,14 @@ module "tvdlab-bastion" {
 }
 ```
 
-The module can be customized by a couple of additional parameter. See [variables](./doc/variables.md) for more information about customisation. The folder [examples](examples) does contain an example files for [main.tf](examples/main.tf), [variables.tv](examples/variables.tf) and [terraform.tfvars](examples/terraform.tfvars.example).
+The module can be customized by a couple of additional parameter. See [variables](./doc/variables.md) for more information about customisation. The folder [examples](examples) does contain an example files for [main.tf](examples/main.tf), [variables.tf](examples/variables.tf) and [terraform.tfvars](examples/terraform.tfvars.example).
 
 ## Related Documentation, Blog
 
 - [Oracle Cloud Infrastructure Documentation](https://docs.cloud.oracle.com/iaas/Content/home.htm)
 - [Terraform OCI Provider Documentation](https://www.terraform.io/docs/providers/oci/index.html)
 - [Terraform Creating Modules](https://www.terraform.io/docs/modules/index.html)
+- Docker based Guacamole Configuration [oehrlis/guacamole](https://github.com/oehrlis/guacamole)
 
 ## Projects using this module
 
