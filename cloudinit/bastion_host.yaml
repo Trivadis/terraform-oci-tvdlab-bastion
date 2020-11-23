@@ -1,0 +1,103 @@
+#cloud-config
+# ----------------------------------------------------------------------------
+# Trivadis AG, Infrastructure Managed Services
+# Saegereistrasse 29, 8152 Glattbrugg, Switzerland
+# ----------------------------------------------------------------------------
+# Name.......: bastion_host.yaml 
+# Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
+# Editor.....: Stefan Oehrli
+# Date.......: 2020.11.23
+# Revision...: 
+# Purpose....: cloud-init configuration file for bastion hosts
+# Notes......: --
+# Reference..: --
+# ----------------------------------------------------------------------------
+# --- Install/upgrade yum packages -------------------------------------------
+package_upgrade: ${yum_upgrade} # Enable yum update
+packages:                       # install additional packages
+  - git                         # Fast Version Control System
+  - mosh                        # Mobile shell that supports roaming and intelligent local echo
+  - tmux                        # A terminal multiplexer
+  - pwgen                       # Automatic password generation
+  - firewalld                   # A firewall daemon with D-Bus interface providing a dynamic firewall
+  - fail2ban                    # Daemon to ban hosts that cause multiple authentication errors
+  - docker-engine               # Docker Engine
+  - docker-compose              # Docker Compose package
+# --- EOF Install/upgrade yum packages ---------------------------------------
+
+# --- Create users -----------------------------------------------------------
+users:
+  - default
+  - name: ${guacamole_user}
+    gecos: Guacamole OS User
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+    groups: users, docker
+    lock_passwd: true
+# --- EOF Create users -------------------------------------------------------
+
+# --- Update remote files ----------------------------------------------------
+write_files:
+# Add fail2ban configuration file --------------------------------------------
+  - path: "/etc/fail2ban/jail.local"
+    permissions: "0644"
+    encoding: "gzip+base64"
+    content: |
+      ${fail2ban_config}
+
+# Add Guacamole initialization script ----------------------------------------
+  - path: "/home/${guacamole_user}/guacamole_init.sh"
+    permissions: "0755"
+    encoding: "gzip+base64"
+    content: |
+      ${guacamole_initialization}
+
+# Add Guacamole connections script -------------------------------------------
+  - path: "/home/${guacamole_user}/02_connections.sql"
+    permissions: "0644"
+    encoding: "gzip+base64"
+    content: |
+      ${guacamole_connections}
+
+# Add Guacamole SSH authorized keys ------------------------------------------
+  - path: "/home/${guacamole_user}/.ssh/authorized_keys"
+    permissions: "0600"
+    encoding: "gzip+base64"
+    content: |
+      ${authorized_keys}
+
+# Append /etc/hosts with custom hosts entries --------------------------------
+  - path: /etc/hosts
+    append: true
+    content: |
+      ${etc_hosts}
+# --- EOF Update remote files ------------------------------------------------
+
+# --- Run configuration commands ---------------------------------------------
+runcmd:
+# Configure firewalld for SSH, guacamole (HTTP/HTTPS) and MOSH
+  - firewall-offline-cmd --add-service=http
+  - firewall-offline-cmd --add-service=https 
+  - firewall-offline-cmd --add-service=ssh 
+  - firewall-offline-cmd --add-port=60001/udp
+  - firewall-offline-cmd --list-all
+  - systemctl enable firewalld 
+  - systemctl restart firewalld 
+  - systemctl status firewalld 
+
+# configure fail2ban service 
+  - systemctl enable fail2ban
+  - systemctl restart fail2ban
+
+# config SELinux Network access
+  - setsebool httpd_can_network_connect on -P
+
+# Start and enable Docker engine
+  - systemctl start docker
+  - systemctl enable docker
+  - chmod a+x /etc/docker
+
+# Setup guacamole
+  - /home/${guacamole_user}/guacamole_init.sh
+# --- EOF Run configuration commands -----------------------------------------
+# --- EOF --------------------------------------------------------------------
