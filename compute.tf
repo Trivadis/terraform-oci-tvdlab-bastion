@@ -37,7 +37,7 @@ resource "oci_core_instance" "bastion" {
 
   metadata = {
     ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(var.ssh_public_key_path)
-     user_data = base64encode(templatefile("${path.module}/cloudinit/bastion_host.yaml", {
+     user_data = var.bastion_bootstrap != "" ? base64gzip(file(var.bastion_bootstrap)) : base64encode(templatefile("${path.module}/cloudinit/bastion_host.yaml", {
       yum_upgrade               = var.yum_upgrade
       guacamole_user            = var.guacamole_user
       guacamole_connections     = base64gzip(file(local.guacamole_connections))
