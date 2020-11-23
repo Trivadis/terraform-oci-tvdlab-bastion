@@ -41,6 +41,16 @@ bastion_bootstrap         = ""
 ssh_public_key            = ""
 ssh_public_key_path       = ""
 #bastion_subnet 
+hosts_file                = ""
+yum_upgrade               = false
+guacamole_enabled         = true
+guacamole_connections     = ""
+#fail2ban_config           = ""
+#guacamole_user            = "avocado"
+#guacadmin_user            = "guacadmin"
+#guacadmin_password        = ""
+#admin_email               = "admin@domain.com"
+staging                   = 1
 
 # Trivadis LAB specific parameter -------------------------------------------
 tvd_participants          = 1
