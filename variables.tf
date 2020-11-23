@@ -111,7 +111,7 @@ variable "bastion_state" {
 }
 
 variable "bastion_bootstrap" {
-  description = "Bootstrap script."
+  description = "Bootstrap script. If left out, it will use the embedded cloud-init configuration to boot the bastion host."
   default     = ""
   type        = string
 }
