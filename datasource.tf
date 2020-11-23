@@ -37,4 +37,5 @@ data "oci_core_images" "oracle_images" {
   shape                    = var.bastion_shape
   sort_by                  = "TIMECREATED"
 }
+
 # --- EOF -------------------------------------------------------------------
