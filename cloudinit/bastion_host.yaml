@@ -69,6 +69,7 @@ write_files:
 # Append /etc/hosts with custom hosts entries --------------------------------
   - path: /etc/hosts
     append: true
+    encoding: "gzip+base64"
     content: |
       ${etc_hosts}
 # --- EOF Update remote files ------------------------------------------------
