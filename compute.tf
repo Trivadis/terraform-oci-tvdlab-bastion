@@ -52,7 +52,7 @@ resource "oci_core_instance" "bastion" {
         admin_email         = var.admin_email
         staging             = var.staging
         guacamole_enabled   = var.guacamole_enabled
-        guacamole_user      = var.guacamole_user
+        guacadmin_user      = var.guacadmin_user
         guacadmin_password  = var.guacadmin_password
       }))
     })) 
