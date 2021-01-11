@@ -40,7 +40,7 @@ resource "oci_core_instance" "bastion" {
      user_data = var.bastion_bootstrap != "" ? base64gzip(file(var.bastion_bootstrap)) : base64encode(templatefile("${path.module}/cloudinit/bastion_host.yaml", {
       yum_upgrade               = var.yum_upgrade
       guacamole_user            = var.guacamole_user
-      guacamole_connections     = base64gzip(file(local.guacamole_connections))
+      guacamole_connections     = base64gzip(local.guacamole_connections)
       authorized_keys           = base64gzip(file(local.ssh_public_key_path))
       etc_hosts                 = base64gzip(file(local.hosts_file))
       fail2ban_config           = base64gzip(templatefile(local.fail2ban_config ,{
@@ -53,7 +53,6 @@ resource "oci_core_instance" "bastion" {
         staging             = var.staging
         guacamole_enabled   = var.guacamole_enabled
         guacamole_user      = var.guacamole_user
-        guacadmin_user      = var.guacadmin_user
         guacadmin_password  = var.guacadmin_password
       }))
     })) 

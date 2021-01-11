@@ -39,4 +39,9 @@ output "bastion_dns_records" {
   description = "The DNS records for the bastion server instances."
   value = [oci_dns_rrset.bastion.*.items]
 }
+
+output "bastion_ssh_access" {
+  description = "SSH access string for bastion hosts."
+  value = formatlist("ssh -A opc@%s.${var.tvd_domain}", oci_core_instance.bastion.*.hostname_label)
+}
 # --- EOF -------------------------------------------------------------------
