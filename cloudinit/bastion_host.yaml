@@ -86,6 +86,10 @@ runcmd:
   - systemctl restart firewalld 
   - systemctl status firewalld 
 
+# configure tools from development repositories
+  - yum-config-manager --enable ol7_developer --enable ol7_developer_EPEL
+  - yum install -y mosh tmux pwgen fail2ban docker-engine docker-compose
+  
 # configure fail2ban service 
   - systemctl enable fail2ban
   - systemctl restart fail2ban
