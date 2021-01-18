@@ -77,7 +77,7 @@ fi
 
 # Copy the connection script to the guacamole folder
 if [ -f "/home/$GUACAMOLE_USER/02_connections.sql" ]; then
-    su -l $GUACAMOLE_USER -c "mv /home/$GUACAMOLE_USER/02_connections.sql /home/$GUACAMOLE_USER/guacamole/config/mysql/02_connections.sql"
+    su -l $GUACAMOLE_USER -c "cp -v /home/$GUACAMOLE_USER/02_connections.sql /home/$GUACAMOLE_USER/guacamole/config/mysql/02_connections.sql"
 fi
 
 echo "GUACAMOLE_ENABLED=$GUACAMOLE_ENABLED"
