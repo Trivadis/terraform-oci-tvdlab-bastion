@@ -70,7 +70,7 @@ chown -R $GUACAMOLE_USER:$GUACAMOLE_USER /home/$GUACAMOLE_USER
 if [ ! -d "/home/$GUACAMOLE_USER/guacamole" ]; then
     # clone guacamole git repo
     su -l $GUACAMOLE_USER -c "cd /home/$GUACAMOLE_USER ; git clone $GITHUP_REPO"
-    sed -i "s|^NGINX_DOMAIN=.*|NGINX_DOMAIN=$DOMAINNAME|" $GITHUP_REPO/.env
+    sed -i "s|^NGINX_DOMAIN=.*|NGINX_DOMAIN=$DOMAINNAME|" /home/$GUACAMOLE_USER/guacamole/.env
 else
     echo "ERR : /home/$GUACAMOLE_USER/guacamole already exists ..."
     exit 1
