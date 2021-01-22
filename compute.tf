@@ -27,7 +27,7 @@ resource "oci_core_instance" "bastion" {
     subnet_id        = var.bastion_subnet[count.index]
     assign_public_ip = true
     display_name     = var.label_prefix == "none" ? "bastion-vnic" : "${var.label_prefix}-bastion-vnic"
-    hostname_label   = format("${local.resource_shortname}-${var.bastion_name}%02d", count.index)
+    hostname_label   = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
   }
 
   # prevent the bastion from destroying and recreating itself if the image ocid changes 
