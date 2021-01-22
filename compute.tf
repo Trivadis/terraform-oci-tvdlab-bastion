@@ -47,7 +47,7 @@ resource "oci_core_instance" "bastion" {
         admin_email = var.admin_email
       }))
       guacamole_initialization  = base64gzip(templatefile("${path.module}/scripts/guacamole_init.template.sh",{
-        host_name           = format("${local.resource_shortname}-${var.bastion_name}%02d", count.index)
+        host_name           = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
         domain_name         = var.tvd_domain
         admin_email         = var.admin_email
         staging             = var.staging
