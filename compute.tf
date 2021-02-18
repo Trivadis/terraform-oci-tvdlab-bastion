@@ -40,7 +40,7 @@ resource "oci_core_instance" "bastion" {
     user_data = base64gzip(templatefile(local.bootstrap_cloudinit_template, {
       yum_upgrade           = var.yum_upgrade
       guacamole_user        = var.guacamole_user
-      guacamole_connections = base64gzip(local.guacamole_connections)
+      guacamole_connections = base64gzip(file(local.guacamole_connections))
       authorized_keys       = base64gzip(file(local.ssh_public_key_path))
       etc_hosts             = base64gzip(local.hosts_file)
       fail2ban_config       = local.fail2ban_config
