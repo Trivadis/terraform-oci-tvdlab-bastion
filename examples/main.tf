@@ -47,9 +47,9 @@ module "tvdlab-bastion" {
 
   # - Optional Parameters ---------------------------------------------------
   # general oci parameters
-  ad_index            = var.ad_index
-  label_prefix        = var.label_prefix
-  tags                = var.tags
+  ad_index     = var.ad_index
+  label_prefix = var.label_prefix
+  tags         = var.tags
 
   # Lab Configuration
   resource_name    = var.resource_name
@@ -57,31 +57,35 @@ module "tvdlab-bastion" {
   tvd_participants = var.tvd_participants
 
   # bastion parameters
-  bastion_enabled          = var.bastion_enabled
-  bastion_dns_registration = var.bastion_dns_registration
-  bastion_name             = var.bastion_name
-  bastion_image_id         = var.bastion_image_id
-  bastion_shape            = var.bastion_shape
-  bastion_bootstrap        = var.bastion_bootstrap
-  bastion_state            = var.bastion_state
-  bastion_os               = var.bastion_os
-  bastion_os_version       = var.bastion_os_version
-  bastion_boot_volume_size = var.bastion_boot_volume_size
-  hosts_file               = var.hosts_file
-  yum_upgrade              = var.yum_upgrade
-  guacamole_enabled        = var.guacamole_enabled
-  guacamole_connections    = var.guacamole_connections
-  fail2ban_config          = var.fail2ban_config
-  guacamole_user           = var.guacamole_user
-  guacadmin_user           = var.guacadmin_user
-  guacadmin_password       = var.guacadmin_password
-  admin_email              = var.admin_email
-  staging                  = var.staging
+  bastion_enabled              = var.bastion_enabled
+  bastion_dns_registration     = var.bastion_dns_registration
+  bastion_name                 = var.bastion_name
+  bastion_image_id             = var.bastion_image_id
+  bastion_shape                = var.bastion_shape
+  bastion_ocpus                = var.bastion_ocpus
+  bastion_memory_in_gbs        = var.bastion_memory_in_gbs
+  bootstrap_cloudinit_template = var.bootstrap_cloudinit_template
+  bastion_state                = var.bastion_state
+  bastion_os                   = var.bastion_os
+  bastion_os_version           = var.bastion_os_version
+  bastion_boot_volume_size     = var.bastion_boot_volume_size
+  hosts_file                   = var.hosts_file
+  yum_upgrade                  = var.yum_upgrade
+  guacamole_enabled            = var.guacamole_enabled
+  guacamole_connections        = var.guacamole_connections
+  webhost_name                 = var.webhost_name
+  webproxy_name                = var.webproxy_name
+  fail2ban_template            = var.fail2ban_template
+  guacamole_user               = var.guacamole_user
+  guacadmin_user               = var.guacadmin_user
+  guacadmin_password           = var.guacadmin_password
+  admin_email                  = var.admin_email
+  staging                      = var.staging
 }
 
 # display public IPs of bastion hosts
 output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
-  value = module.tvdlab-bastion.bastion_public_ip
+  value       = module.tvdlab-bastion.bastion_public_ip
 }
 # --- EOF -------------------------------------------------------------------

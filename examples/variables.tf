@@ -95,8 +95,20 @@ variable "bastion_os_version" {
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard.E2.1"
+  default     = "VM.Standard.E3.Flex"
   type        = string
+}
+
+variable "bastion_ocpus" {
+  description = "The ocpus for the shape."
+  default     = 1
+  type        = number
+}
+
+variable "bastion_memory_in_gbs" {
+  description = "The memory in gbs for the shape."
+  default     = 8
+  type        = number
 }
 
 variable "bastion_boot_volume_size" {
@@ -110,7 +122,7 @@ variable "bastion_state" {
   default     = "RUNNING"
 }
 
-variable "bastion_bootstrap" {
+variable "bootstrap_cloudinit_template" {
   description = "Bootstrap script. If left out, it will use the embedded cloud-init configuration to boot the bastion host."
   default     = ""
   type        = string
@@ -151,14 +163,26 @@ variable "guacamole_enabled" {
   type        = bool
 }
 
+variable "webhost_name" {
+  description = "web host name used configure nginx / dns"
+  default     = ""
+  type        = string
+}
+
+variable "webproxy_name" {
+  description = "web proxy name used configure nginx"
+  default     = ""
+  type        = string
+}
+
 variable "guacamole_connections" {
   description = "path to a custom guacamole connections SQL script"
   default     = ""
   type        = string
 }
 
-variable "fail2ban_config" {
-  description = "path to a custom fail2ban configuration file"
+variable "fail2ban_template" {
+  description = "path to a fail2ban configuration template file"
   default     = ""
   type        = string
 }

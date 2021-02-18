@@ -15,44 +15,48 @@
 # ---------------------------------------------------------------------------
 
 # provider identity parameters ----------------------------------------------
-fingerprint               = ""
-private_key_path          = ""
-region                    = "eu-zurich-1"
-tenancy_ocid              = ""
-user_ocid                 = ""
+fingerprint                     = ""
+private_key_path                = ""
+region                          = "eu-zurich-1"
+tenancy_ocid                    = ""
+user_ocid                       = ""
 
 # general oci parameters ----------------------------------------------------
-compartment_id            = ""
-label_prefix              = "none"
-resource_name             = ""
-availability_domain       = 1
-tags                      = {}
+compartment_id                  = ""
+label_prefix                    = "none"
+resource_name                   = ""
+availability_domain             = 1
+tags                            = {}
 
 # Bastion Host Parameter ----------------------------------------------------
-bastion_enabled           = false
-bastion_dns_registration  = false
-bastion_name              = "bastion"
-bastion_image_id          = "OEL"
-bastion_os_version        = "7.8"
-bastion_shape             = "VM.Standard.E2.1"
-bastion_boot_volume_size  = 50
-bastion_state             = "RUNNING"
-bastion_bootstrap         = ""
-ssh_public_key            = ""
-ssh_public_key_path       = ""
+bastion_enabled                 = false
+bastion_dns_registration        = false
+bastion_name                    = "bastion"
+bastion_image_id                = "OEL"
+bastion_os_version              = "7.9"
+bastion_shape                   = "VM.Standard.E3.Flex"
+bastion_boot_volume_size        = 50
+bastion_ocpus                   = 1
+bastion_memory_in_gbs           = 8
+bastion_state                   = "RUNNING"
+bootstrap_cloudinit_template    = ""
+ssh_public_key                  = ""
+ssh_public_key_path             = ""
 #bastion_subnet 
-hosts_file                = ""
-yum_upgrade               = false
-guacamole_enabled         = true
-guacamole_connections     = ""
-#fail2ban_config           = ""
-#guacamole_user            = "avocado"
-#guacadmin_user            = "guacadmin"
-#guacadmin_password        = ""
-#admin_email               = "admin@domain.com"
-staging                   = 1
+hosts_file                      = ""
+yum_upgrade                     = false
+webhost_name                    = "www"
+webproxy_name                   = "www.trivadislabs.com"
+guacamole_enabled               = true
+guacamole_connections           = ""
+#fail2ban_template              = ""
+#guacamole_user                 = "avocado"
+#guacadmin_user                 = "guacadmin"
+#guacadmin_password             = ""
+#admin_email                    = "admin@domain.com"
+staging                         = 1
 
 # Trivadis LAB specific parameter -------------------------------------------
-tvd_participants          = 1
-tvd_domain                = "trivadislabs.com"
+tvd_participants                = 1
+tvd_domain                      = "trivadislabs.com"
 # --- EOF -------------------------------------------------------------------
