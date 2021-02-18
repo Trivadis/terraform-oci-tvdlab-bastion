@@ -30,8 +30,7 @@ locals {
   }))
 
   # define and render bootstrap script
-  guacamole_initialization_template = var.guacamole_initialization_template == "" ? "${path.module}/scripts/guacamole_init.template.sh" : var.guacamole_initialization_template
-  guacamole_initialization = base64gzip(templatefile(local.guacamole_initialization_template, {
+  guacamole_initialization = base64gzip(templatefile("${path.module}/scripts/guacamole_init.template.sh", {
     webhost_name       = var.webhost_name
     webproxy_name      = var.webproxy_name
     host_name          = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
