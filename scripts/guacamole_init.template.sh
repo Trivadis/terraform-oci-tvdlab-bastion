@@ -17,7 +17,7 @@
 EMAIL="${admin_email}"                      # A valid address is strongly recommended for lets encrypt
 HOSTNAME="${host_name}"                     # Hostname for the bastion host
 DOMAINNAME="${domain_name}"                 # Domainname for the bastion host
-WEBHOST_NAME="${host_name}"                 # web host name used configure nginx / dns
+WEBHOST_NAME="${webhost_name}"              # web host name used configure nginx / dns
 PROXYSERVER="${webproxy_name}"              # web proxy name used configure nginx
 STAGING_ENABLE=${staging}                   # Set to 1 if you're testing your setup to avoid hitting request limits
 GUACAMOLE_USER=${guacamole_user}
