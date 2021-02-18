@@ -25,7 +25,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 |----------------------------|------------------------------------------------------------------------------------------------------------|-------------------|--------------------------------------|
 | `admin_email`              | Admin email used to configure Let's encrypt.                                                               |                   | admin@domain.com                     |
 | `bastion_boot_volume_size` | Size of the boot volume.                                                                                   |                   | 50                                   |
-| `bastion_bootstrap`        | Bootstrap script to provision the bastion host.                                                            |                   | n/a                                  |
+| `bootstrap_cloudinit_template`        | Bootstrap script to provision the bastion host.                                                            |                   | n/a                                  |
 | `bastion_dns_registration` | Whether to register the bastion host in DNS zone.                                                          | true/false        | true                                 |
 | `bastion_enabled`          | Whether to create the bastion host or not.                                                                 | true/false        | false                                |
 | `bastion_image_id`         | Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).                  | OCID              | OEL                                  |
@@ -35,7 +35,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `bastion_shape`            | Bootstrap script. If left out, it will use the embedded cloud-init configuration to boot the bastion host. |                   | VM.Standard.E2.1                     |
 | `bastion_state`            | Whether bastion host should be either RUNNING or STOPPED state.                                            | RUNNING / STOPPED | RUNNING                              |
 | `bastion_subnet`           | List of subnets for the bastion hosts                                                                      |                   | n/a                                  |
-| `fail2ban_config`          | Path to a custom fail2ban configuration file                                                               |                   | `fail2ban.template.conf`             |
+| `fail2ban_template`          | Path to a custom fail2ban configuration file                                                               |                   | `fail2ban.template.conf`             |
 | `guacadmin_password`       | Guacamole console admin user password. If password is empty it will be auto generate during setup.         |                   | n/a                                  |
 | `guacadmin_user`           | Guacamole console admin user                                                                               |                   | guacadmin                            |
 | `guacamole_connections`    | Path to a custom guacamole connections SQL script                                                          |                   | `guacamole_connections.template.sql` |

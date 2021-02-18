@@ -17,6 +17,8 @@
 EMAIL="${admin_email}"                      # A valid address is strongly recommended for lets encrypt
 HOSTNAME="${host_name}"                     # Hostname for the bastion host
 DOMAINNAME="${domain_name}"                 # Domainname for the bastion host
+WEBHOST_NAME="${host_name}"                 # web host name used configure nginx / dns
+PROXYSERVER="${webproxy_name}"              # web proxy name used configure nginx
 STAGING_ENABLE=${staging}                   # Set to 1 if you're testing your setup to avoid hitting request limits
 GUACAMOLE_USER=${guacamole_user}
 GUACADMIN_USER="${guacadmin_user}"          # guacadmin user name   
@@ -68,9 +70,14 @@ chown -R $GUACAMOLE_USER:$GUACAMOLE_USER /home/$GUACAMOLE_USER
 
 # check if we do have the git repo
 if [ ! -d "/home/$GUACAMOLE_USER/guacamole" ]; then
+    if [ -z "$WEBHOST_NAME" ]; then 
+        WEBHOST_NAME=$HOSTNAME
+    fi
     # clone guacamole git repo
     su -l $GUACAMOLE_USER -c "cd /home/$GUACAMOLE_USER ; git clone $GITHUP_REPO"
+    sed -i "s|^NGINX_HOST=.*|NGINX_HOST=$WEBHOST_NAME|" /home/$GUACAMOLE_USER/guacamole/.env
     sed -i "s|^NGINX_DOMAIN=.*|NGINX_DOMAIN=$DOMAINNAME|" /home/$GUACAMOLE_USER/guacamole/.env
+    sed -i "s|^NGINX_PROXYSERVER=.*|NGINX_PROXYSERVER=$PROXYSERVER|" /home/$GUACAMOLE_USER/guacamole/.env
 else
     echo "ERR : /home/$GUACAMOLE_USER/guacamole already exists ..."
     exit 1
@@ -86,7 +93,7 @@ if [ $GUACAMOLE_ENABLED == "true" ]; then
     echo "INFO: Setup guacamole stack" 
     # setup guacamole 
     su -l $GUACAMOLE_USER -c "\
-    export HOSTNAME=$HOSTNAME; \
+    export HOSTNAME=$WEBHOST_NAME; \
     export DOMAINNAME=$DOMAINNAME; \
     export EMAIL=$EMAIL; \
     export STAGING_ENABLE=$STAGING_ENABLE; \
@@ -99,7 +106,7 @@ if [ $GUACAMOLE_ENABLED == "true" ]; then
     if [ -z "$GUACADMIN_PASSWORD" ]; then
         GUACADMIN_PASSWORD=$(grep -i GUACADMIN_PASSWORD /home/$GUACAMOLE_USER/guacamole/.env |cut -d= -f2)
     fi
-    GUACAMOLE_CONSOLE="http://$HOSTNAME.$DOMAINNAME/guacamole"
+    GUACAMOLE_CONSOLE="http://$WEBHOST_NAME.$DOMAINNAME/guacamole"
 else    
     echo "INFO: Skip setup of guacamole stack" 
 fi
