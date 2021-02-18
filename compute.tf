@@ -37,7 +37,26 @@ resource "oci_core_instance" "bastion" {
 
   metadata = {
     ssh_authorized_keys = local.ssh_authorized_keys
-    user_data           = local.bootstrap_cloudinit
+    user_data = base64gzip(templatefile(local.bootstrap_cloudinit_template, {
+      yum_upgrade           = var.yum_upgrade
+      guacamole_user        = var.guacamole_user
+      guacamole_connections = base64gzip(local.guacamole_connections)
+      authorized_keys       = base64gzip(file(local.ssh_public_key_path))
+      etc_hosts             = base64gzip(local.hosts_file)
+      fail2ban_config       = local.fail2ban_config
+      guacamole_initialization = base64gzip(templatefile("${path.module}/scripts/guacamole_init.template.sh", {
+        webhost_name       = var.webhost_name
+        webproxy_name      = var.webproxy_name
+        host_name          = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
+        domain_name        = var.tvd_domain
+        admin_email        = var.admin_email
+        staging            = var.staging
+        guacamole_enabled  = var.guacamole_enabled
+        guacamole_user     = var.guacamole_user
+        guacadmin_user     = var.guacadmin_user
+        guacadmin_password = var.guacadmin_password
+      }))
+    }))
   }
 
   shape_config {
