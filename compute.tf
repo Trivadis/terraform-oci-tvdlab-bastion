@@ -42,7 +42,7 @@ resource "oci_core_instance" "bastion" {
       guacamole_user        = var.guacamole_user
       guacamole_connections = base64gzip(file(local.guacamole_connections))
       authorized_keys       = base64gzip(file(local.ssh_public_key_path))
-      etc_hosts             = base64gzip(local.hosts_file)
+      etc_hosts             = base64gzip(file(local.hosts_file))
       fail2ban_config       = local.fail2ban_config
       guacamole_initialization = base64gzip(templatefile("${path.module}/scripts/guacamole_init.template.sh", {
         webhost_name       = var.webhost_name
