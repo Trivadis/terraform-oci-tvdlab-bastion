@@ -73,6 +73,9 @@ if [ ! -d "/home/$GUACAMOLE_USER/guacamole" ]; then
     if [ -z "$WEBHOST_NAME" ]; then 
         WEBHOST_NAME=$HOSTNAME
     fi
+    if [ -z "$PROXYSERVER" ]; then 
+        PROXYSERVER="www.$DOMAINNAME"
+    fi
     # clone guacamole git repo
     su -l $GUACAMOLE_USER -c "cd /home/$GUACAMOLE_USER ; git clone $GITHUP_REPO"
     sed -i "s|^NGINX_HOST=.*|NGINX_HOST=$WEBHOST_NAME|" /home/$GUACAMOLE_USER/guacamole/.env
