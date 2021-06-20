@@ -26,7 +26,8 @@ compartment_id                  = ""
 label_prefix                    = "none"
 resource_name                   = ""
 availability_domain             = 1
-defined_tags                    = {}
+bastion_defined_tags            = { "Schedule.Weekend" = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+"Schedule.WeekDay" = "0,0,0,0,0,0,0,*,*,*,*,*,*,*,*,*,*,*,*,*,0,0,0,0" }
 tags                            = {}
 
 # Bastion Host Parameter ----------------------------------------------------
