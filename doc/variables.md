@@ -16,6 +16,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `compartment_id` | OCID of the compartment where to create all resources.                                                              | OCID   |         |
 | `label_prefix`   | A string that will be prepended to all resources.                                                                   |        | none    |
 | `resource_name`  | A string to name all resource. If undefined it will be derived from compartment name.                               |        | n/a     |
+| `defined_tags`   | A simple key-value pairs to tag the resources created.                                                              |        |         |
 | `tags`           | A simple key-value pairs to tag the resources created.                                                              |        |         |
 | `ad_index`       | The index of the availability domain. This is used to identify the availability_domain place the compute instances. |        | 1       |
 
