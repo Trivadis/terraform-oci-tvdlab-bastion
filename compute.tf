@@ -22,6 +22,7 @@ resource "oci_core_instance" "bastion" {
   shape               = var.bastion_shape
   state               = var.bastion_state
   freeform_tags       = var.tags
+  defined_tags        = var.defined_tags
 
   create_vnic_details {
     subnet_id        = var.bastion_subnet[count.index]
