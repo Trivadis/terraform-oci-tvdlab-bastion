@@ -26,6 +26,7 @@ compartment_id                  = ""
 label_prefix                    = "none"
 resource_name                   = ""
 availability_domain             = 1
+defined_tags                    = {}
 tags                            = {}
 
 # Bastion Host Parameter ----------------------------------------------------
