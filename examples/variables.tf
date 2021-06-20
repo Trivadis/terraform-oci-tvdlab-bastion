@@ -50,7 +50,7 @@ variable "ad_index" {
   type        = number
 }
 
-variable "defined_tags" {
+variable "bastion_defined_tags" {
   description = "Defined tags for this resource"
   type        = map(any)
   default     = {}
