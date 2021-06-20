@@ -50,6 +50,12 @@ variable "ad_index" {
   type        = number
 }
 
+variable "defined_tags" {
+  description = "Defined tags for this resource"
+  type        = map(any)
+  default     = {}
+}
+
 variable "tags" {
   description = "A simple key-value pairs to tag the resources created"
   type        = map(any)
@@ -95,7 +101,7 @@ variable "bastion_os_version" {
 
 variable "bastion_shape" {
   description = "The shape of bastion instance."
-  default     = "VM.Standard.E3.Flex"
+  default     = "VM.Standard.E4.Flex"
   type        = string
 }
 
@@ -107,7 +113,7 @@ variable "bastion_ocpus" {
 
 variable "bastion_memory_in_gbs" {
   description = "The memory in gbs for the shape."
-  default     = 8
+  default     = 4
   type        = number
 }
 
