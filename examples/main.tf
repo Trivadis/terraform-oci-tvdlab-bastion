@@ -34,7 +34,7 @@ provider "oci" {
 
 module "tvdlab-bastion" {
   source  = "Trivadis/tvdlab-bastion/oci"
-  version = ">= 1.1.0"
+  version = ">= 1.3.0"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
@@ -49,6 +49,7 @@ module "tvdlab-bastion" {
   # general oci parameters
   ad_index     = var.ad_index
   label_prefix = var.label_prefix
+  defined_tags = var.defined_tags
   tags         = var.tags
 
   # Lab Configuration
