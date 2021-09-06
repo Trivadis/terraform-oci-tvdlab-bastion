@@ -46,6 +46,6 @@ output "bastion_ssh_access" {
 }
 output "bastion_public_url" {
   description = "Bastion Apache Guacammole URL."
-  value = formatlist("http://%s.${tvd_domain}/guacamole", oci_core_instance.bastion.*.hostname_label)
+  value = formatlist("http://%s.${var.tvd_domain}/guacamole", oci_core_instance.bastion.*.hostname_label)
 }
 # --- EOF -------------------------------------------------------------------
