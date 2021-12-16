@@ -27,6 +27,7 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `admin_email`              | Admin email used to configure Let's encrypt.                                                               |                   | admin@domain.com                     |
 | `bastion_boot_volume_size` | Size of the boot volume.                                                                                   |                   | 50                                   |
 | `bootstrap_cloudinit_template`        | Bootstrap script to provision the bastion host.                                                            |                   | n/a                                  |
+| `post_bootstrap_config`        | Post Bootstrap script to provision the bastion host.                                                            |                   | n/a                                  |
 | `bastion_dns_registration` | Whether to register the bastion host in DNS zone.                                                          | true/false        | true                                 |
 | `bastion_enabled`          | Whether to create the bastion host or not.                                                                 | true/false        | false                                |
 | `bastion_image_id`         | Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).                  | OCID              | OEL                                  |

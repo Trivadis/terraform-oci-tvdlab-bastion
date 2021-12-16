@@ -52,6 +52,13 @@ write_files:
     content: |
       ${guacamole_initialization}
 
+# Add post bootstrap script -------------------------------------------------------
+  - path: "/root/post_bootstrap_config.sh"
+    permissions: "0750"
+    encoding: "gzip+base64"
+    content: |
+      ${post_bootstrap_config}
+
 # Add Guacamole connections script -------------------------------------------
   - path: "/home/${guacamole_user}/02_connections.sql"
     permissions: "0644"
@@ -104,5 +111,8 @@ runcmd:
 
 # Setup guacamole
   - /home/${guacamole_user}/guacamole_init.sh
+
+# Post Bootstrap
+  - nohup /root/post_bootstrap_config.sh > /root/post_bootstrap_config.log 2>&1 & 
 # --- EOF Run configuration commands -----------------------------------------
 # --- EOF --------------------------------------------------------------------
