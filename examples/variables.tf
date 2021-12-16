@@ -134,6 +134,12 @@ variable "bootstrap_cloudinit_template" {
   type        = string
 }
 
+variable "post_bootstrap_config" {
+  description = "Host environment config script used after bootstrap host."
+  default     = ""
+  type        = string
+}
+
 variable "ssh_public_key" {
   description = "the content of the ssh public key used to access the bastion. set this or the ssh_public_key_path"
   default     = ""

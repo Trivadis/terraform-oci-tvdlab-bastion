@@ -66,6 +66,7 @@ module "tvdlab-bastion" {
   bastion_ocpus                = var.bastion_ocpus
   bastion_memory_in_gbs        = var.bastion_memory_in_gbs
   bootstrap_cloudinit_template = var.bootstrap_cloudinit_template
+  post_bootstrap_config        = var.post_bootstrap_config
   bastion_state                = var.bastion_state
   bastion_os                   = var.bastion_os
   bastion_os_version           = var.bastion_os_version

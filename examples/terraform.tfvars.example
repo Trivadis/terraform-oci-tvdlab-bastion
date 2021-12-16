@@ -42,6 +42,7 @@ bastion_ocpus                   = 1
 bastion_memory_in_gbs           = 8
 bastion_state                   = "RUNNING"
 bootstrap_cloudinit_template    = ""
+post_bootstrap_config           = ""
 ssh_public_key                  = ""
 ssh_public_key_path             = ""
 #bastion_subnet 
