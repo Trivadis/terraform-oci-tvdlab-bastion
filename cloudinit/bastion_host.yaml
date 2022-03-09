@@ -87,7 +87,9 @@ runcmd:
   - firewall-offline-cmd --add-service=http
   - firewall-offline-cmd --add-service=https 
   - firewall-offline-cmd --add-service=ssh 
+  - firewall-offline-cmd --add-service=openvpn
   - firewall-offline-cmd --add-port=60001/udp
+  - firewall-offline-cmd --add-port=1194/udp
   - firewall-offline-cmd --list-all
   - systemctl enable firewalld 
   - systemctl restart firewalld 
