@@ -103,6 +103,13 @@ runcmd:
   - systemctl enable fail2ban
   - systemctl restart fail2ban
 
+# configure yum-cron
+  - yum install -y yum-cron
+  - systemctl start yum-cron
+  - systemctl enable yum-cron
+  - sed -i 's/^apply_updates.*/apply_updates = yes/g' /etc/yum/yum-cron.conf
+  - sed -i 's/^random_sleep.*/random_sleep = 0/g' /etc/yum/yum-cron.conf
+
 # config SELinux Network access
   - setsebool httpd_can_network_connect on -P
 
