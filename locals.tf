@@ -29,6 +29,7 @@ locals {
   fail2ban_template = var.fail2ban_template == "" ? "${path.module}/etc/fail2ban.template.conf" : var.fail2ban_template
   fail2ban_config = base64gzip(templatefile(local.fail2ban_template, {
     admin_email = var.admin_email
+    ssh_port    = var.public_ssh_port
   }))
 
   # define and render cloudinit bootstrap configuration
