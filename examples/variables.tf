@@ -152,6 +152,12 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
+variable "public_ssh_port" {
+  description = "Public SSH access port configured in security list."
+  type        = number
+  default     = 22
+}
+
 variable "bastion_subnet" {
   description = "List of subnets for the bastion hosts"
   type        = list(string)

@@ -73,6 +73,7 @@ module "tvdlab-bastion" {
   bastion_boot_volume_size     = var.bastion_boot_volume_size
   hosts_file                   = var.hosts_file
   yum_upgrade                  = var.yum_upgrade
+  public_ssh_port              = var.public_ssh_port
   guacamole_enabled            = var.guacamole_enabled
   guacamole_connections        = var.guacamole_connections
   webhost_name                 = var.webhost_name
