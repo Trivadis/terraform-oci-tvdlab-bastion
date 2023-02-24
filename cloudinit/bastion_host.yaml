@@ -86,10 +86,10 @@ runcmd:
 # Configure firewalld for SSH, guacamole (HTTP/HTTPS) and MOSH
   - firewall-offline-cmd --add-service=http
   - firewall-offline-cmd --add-service=https 
-  - firewall-offline-cmd --add-service=ssh 
   - firewall-offline-cmd --add-service=openvpn
   - firewall-offline-cmd --add-port=60001/udp
   - firewall-offline-cmd --add-port=1194/udp
+  - firewall-offline-cmd --add-port=${ssh_port}/tcp
   - firewall-offline-cmd --list-all
   - systemctl enable firewalld 
   - systemctl restart firewalld 
@@ -112,6 +112,11 @@ runcmd:
 
 # config SELinux Network access
   - setsebool httpd_can_network_connect on -P
+
+# config dedicated ssh port
+  - semanage port -a -t ssh_port_t -p tcp ${ssh_port}
+  - sed -i 's/#Port 22/Port ${ssh_port}/' /etc/ssh/sshd_config
+  - service sshd restart
 
 # Start and enable Docker engine
   - systemctl start docker
