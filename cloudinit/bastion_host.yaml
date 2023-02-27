@@ -13,16 +13,16 @@
 # Reference..: --
 # ----------------------------------------------------------------------------
 # --- Install/upgrade yum packages -------------------------------------------
-# package_upgrade: ${yum_upgrade} # Enable yum update
-# packages:                       # install additional packages
-#   - git                         # Fast Version Control System
-#   - mosh                        # Mobile shell that supports roaming and intelligent local echo
-#   - tmux                        # A terminal multiplexer
-#   - pwgen                       # Automatic password generation
-#   - firewalld                   # A firewall daemon with D-Bus interface providing a dynamic firewall
-#   - fail2ban                    # Daemon to ban hosts that cause multiple authentication errors
-#   - docker-engine               # Docker Engine
-#   - docker-compose              # Docker Compose package
+package_upgrade: ${yum_upgrade} # Enable yum update
+packages:                       # install additional packages
+  - git                         # Fast Version Control System
+  - mosh                        # Mobile shell that supports roaming and intelligent local echo
+  - tmux                        # A terminal multiplexer
+  - pwgen                       # Automatic password generation
+  - firewalld                   # A firewall daemon with D-Bus interface providing a dynamic firewall
+  - fail2ban                    # Daemon to ban hosts that cause multiple authentication errors
+  - docker-engine               # Docker Engine
+  - docker-compose              # Docker Compose package
 # --- EOF Install/upgrade yum packages ---------------------------------------
 
 # --- Create users -----------------------------------------------------------
@@ -83,11 +83,6 @@ write_files:
 
 # --- Run configuration commands ---------------------------------------------
 runcmd:
-
-# configure tools from development repositories
-  - yum-config-manager --enable ol7_developer --enable ol7_developer_EPEL
-  - yum install -y mosh tmux pwgen fail2ban firewalld docker-engine docker-compose yum-cron
-
 # Configure firewalld for SSH, guacamole (HTTP/HTTPS) and MOSH
   - firewall-offline-cmd --add-service=http
   - firewall-offline-cmd --add-service=https 
@@ -99,12 +94,17 @@ runcmd:
   - systemctl enable firewalld 
   - systemctl restart firewalld 
   - systemctl status firewalld 
+
+# configure tools from development repositories
+  - yum-config-manager --enable ol7_developer --enable ol7_developer_EPEL
+  - yum install -y mosh tmux pwgen fail2ban docker-engine docker-compose
   
 # configure fail2ban service 
   - systemctl enable fail2ban
   - systemctl restart fail2ban
 
 # configure yum-cron
+  - yum install -y yum-cron
   - systemctl start yum-cron
   - systemctl enable yum-cron
   - sed -i 's/^apply_updates.*/apply_updates = yes/g' /etc/yum/yum-cron.conf
@@ -130,3 +130,6 @@ runcmd:
   - nohup /root/post_bootstrap_config.sh > /root/post_bootstrap_config.log 2>&1 & 
 # --- EOF Run configuration commands -----------------------------------------
 # --- EOF --------------------------------------------------------------------
+
+  - yum upgrade -y
+  - yum install -y tmux pwgen
