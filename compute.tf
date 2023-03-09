@@ -5,7 +5,7 @@
 # Name.......: compute.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.12
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Compute Instance for the terraform module tvdlab bastion.
 # Notes......: -- 
@@ -41,7 +41,7 @@ resource "oci_core_instance" "bastion" {
     user_data = base64gzip(templatefile(local.bootstrap_cloudinit_template, {
       yum_upgrade           = var.yum_upgrade
       guacamole_user        = var.guacamole_user
-      ssh_port              = var.public_ssh_port
+      ssh_port              = var.inbound_ssh_port
       guacamole_connections = base64gzip(local.guacamole_connections)
       authorized_keys       = base64gzip(local.ssh_authorized_keys)
       etc_hosts             = base64gzip(local.hosts_file)
@@ -54,6 +54,7 @@ resource "oci_core_instance" "bastion" {
         domain_name        = var.tvd_domain
         admin_email        = var.admin_email
         staging            = var.staging
+        vpn_port           = var.inbound_vpn_port
         guacamole_enabled  = var.guacamole_enabled
         guacamole_user     = var.guacamole_user
         guacadmin_user     = var.guacadmin_user

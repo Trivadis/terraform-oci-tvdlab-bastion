@@ -6,7 +6,7 @@
 # Name.......: guacamole_init.template.sh 
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.11.22
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Template script to initialize the guacamole stack.
 # Notes......: --
@@ -19,6 +19,7 @@ HOSTNAME="${host_name}"                     # Hostname for the bastion host
 DOMAINNAME="${domain_name}"                 # Domainname for the bastion host
 WEBHOST_NAME="${webhost_name}"              # web host name used configure nginx / dns
 PROXYSERVER="${webproxy_name}"              # web proxy name used configure nginx
+VPN_PORT=${vpn_port}                        # OpenVPN port to configure 
 STAGING_ENABLE=${staging}                   # Set to 1 if you're testing your setup to avoid hitting request limits
 GUACAMOLE_USER=${guacamole_user}
 GUACADMIN_USER="${guacadmin_user}"          # guacadmin user name   
@@ -103,6 +104,7 @@ if [ $GUACAMOLE_ENABLED == "true" ]; then
     export GUACAMOLE_USER=$GUACAMOLE_USER; \
     export GUACADMIN_USER=$GUACADMIN_USER; \
     export GUACADMIN_PASSWORD=$GUACADMIN_PASSWORD; \
+    export OPENVPN_PORT=$VPN_PORT \
     /home/$GUACAMOLE_USER/guacamole/bin/setup_guacamole.sh"
 
     # get guacadmin password

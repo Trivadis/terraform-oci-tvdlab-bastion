@@ -5,7 +5,7 @@
 # Name.......: locals.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.12
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Local variables for the terraform module tvdlab vcn.
 # Notes......: -- 
@@ -29,7 +29,8 @@ locals {
   fail2ban_template = var.fail2ban_template == "" ? "${path.module}/etc/fail2ban.template.conf" : var.fail2ban_template
   fail2ban_config = base64gzip(templatefile(local.fail2ban_template, {
     admin_email = var.admin_email
-    ssh_port    = var.public_ssh_port
+    ssh_port    = var.inbound_ssh_port
+    vpn_port    = var.inbound_vpn_port
   }))
 
   # define and render cloudinit bootstrap configuration
