@@ -5,7 +5,7 @@
 # Name.......: main.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.12
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Main file to use terraform module tvdlab bastion.
 # Notes......: -- 
@@ -34,7 +34,7 @@ provider "oci" {
 
 module "tvdlab-bastion" {
   source  = "Trivadis/tvdlab-bastion/oci"
-  version = ">= 1.3.0"
+  version = ">= 2.0.0"
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
@@ -73,7 +73,8 @@ module "tvdlab-bastion" {
   bastion_boot_volume_size     = var.bastion_boot_volume_size
   hosts_file                   = var.hosts_file
   yum_upgrade                  = var.yum_upgrade
-  public_ssh_port              = var.public_ssh_port
+  inbound_ssh_port             = var.inbound_ssh_port
+  inbound_vpn_port             = var.inbound_vpn_port
   guacamole_enabled            = var.guacamole_enabled
   guacamole_connections        = var.guacamole_connections
   webhost_name                 = var.webhost_name

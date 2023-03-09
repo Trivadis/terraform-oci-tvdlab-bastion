@@ -6,7 +6,7 @@
 # Name.......: bastion_host.yaml 
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.11.23
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: cloud-init configuration file for bastion hosts
 # Notes......: --
@@ -88,7 +88,7 @@ runcmd:
   - firewall-offline-cmd --add-service=https 
   - firewall-offline-cmd --add-service=openvpn
   - firewall-offline-cmd --add-port=60001/udp
-  - firewall-offline-cmd --add-port=1194/udp
+  - firewall-offline-cmd --add-port=${vpn_port}/udp
   - firewall-offline-cmd --add-port=${ssh_port}/tcp
   - firewall-offline-cmd --list-all
   - systemctl enable firewalld 

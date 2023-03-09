@@ -5,7 +5,7 @@
 # Name.......: variables.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.12
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Variable file for the terraform module tvdlab bastion.
 # Notes......: -- 
@@ -50,7 +50,7 @@ variable "ad_index" {
   type        = number
 }
 
-variable "bastion_defined_tags" {
+variable "defined_tags" {
   description = "Defined tags for this resource"
   type        = map(any)
   default     = {}
@@ -152,8 +152,14 @@ variable "ssh_public_key_path" {
   type        = string
 }
 
-variable "public_ssh_port" {
-  description = "Public SSH access port configured in security list."
+variable "inbound_vpn_port" {
+  description = "Inbound OpenVPN access port configured in security list."
+  type        = number
+  default     = 1194
+}
+
+variable "inbound_ssh_port" {
+  description = "Inbound SSH access port configured in security list."
   type        = number
   default     = 22
 }
