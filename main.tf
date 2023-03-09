@@ -5,7 +5,7 @@
 # Name.......: main.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.12
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Main file for the terraform module tvdlab vcn.
 # Notes......: Define a minimal terraform version

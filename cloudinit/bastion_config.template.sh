@@ -6,7 +6,7 @@
 # Name.......: bastion_config.template.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2021.12.16
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: Script to configure the bastion host after bootstrap
 # Notes......: --

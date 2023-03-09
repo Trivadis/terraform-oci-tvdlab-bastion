@@ -5,7 +5,7 @@
 # Name.......: dns.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2020.10.13
+# Date.......: 2023.03.09
 # Revision...: 
 # Purpose....: DNS registration for bastion jost.
 # Notes......: -- 
