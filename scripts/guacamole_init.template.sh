@@ -82,6 +82,7 @@ if [ ! -d "/home/$GUACAMOLE_USER/guacamole" ]; then
     sed -i "s|^NGINX_HOST=.*|NGINX_HOST=$WEBHOST_NAME|" /home/$GUACAMOLE_USER/guacamole/.env
     sed -i "s|^NGINX_DOMAIN=.*|NGINX_DOMAIN=$DOMAINNAME|" /home/$GUACAMOLE_USER/guacamole/.env
     sed -i "s|^NGINX_PROXYSERVER=.*|NGINX_PROXYSERVER=$PROXYSERVER|" /home/$GUACAMOLE_USER/guacamole/.env
+    sed -i "s|^OPENVPN_PORT=.*|OPENVPN_PORT=$VPN_PORT|" /home/$GUACAMOLE_USER/guacamole/.env
 else
     echo "ERR : /home/$GUACAMOLE_USER/guacamole already exists ..."
     exit 1
