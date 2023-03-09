@@ -42,6 +42,7 @@ resource "oci_core_instance" "bastion" {
       yum_upgrade           = var.yum_upgrade
       guacamole_user        = var.guacamole_user
       ssh_port              = var.inbound_ssh_port
+      ssh_port              = var.inbound_vpn_port
       guacamole_connections = base64gzip(local.guacamole_connections)
       authorized_keys       = base64gzip(local.ssh_authorized_keys)
       etc_hosts             = base64gzip(local.hosts_file)
