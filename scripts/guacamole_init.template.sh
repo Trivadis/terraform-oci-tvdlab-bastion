@@ -104,7 +104,7 @@ if [ $GUACAMOLE_ENABLED == "true" ]; then
     export GUACAMOLE_USER=$GUACAMOLE_USER; \
     export GUACADMIN_USER=$GUACADMIN_USER; \
     export GUACADMIN_PASSWORD=$GUACADMIN_PASSWORD; \
-    export OPENVPN_PORT=$VPN_PORT \
+    export OPENVPN_PORT=$VPN_PORT; \
     /home/$GUACAMOLE_USER/guacamole/bin/setup_guacamole.sh"
 
     # get guacadmin password
