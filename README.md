@@ -33,7 +33,6 @@ module "tvdlab-bastion" {
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid          = var.tenancy_ocid
-  region                = var.region
   compartment_id        = var.compartment_id
   ssh_public_key_path   = var.ssh_public_key_path
   bastion_subnet        = module.tvdlab-vcn.public_subnet_id
@@ -49,7 +48,6 @@ module "tvdlab-bastion" {
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid          = var.tenancy_ocid
-  region                = var.region
   compartment_id        = var.compartment_id
   ssh_public_key_path   = var.ssh_public_key_path
   bastion_subnet        = module.tvdlab-vcn.public_subnet_id

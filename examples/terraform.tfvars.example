@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-# Trivadis AG, Infrastructure Managed Services
+# Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ---------------------------------------------------------------------------
 # Name.......: terraform.tfvars.example
@@ -17,7 +17,6 @@
 # provider identity parameters ----------------------------------------------
 fingerprint                     = ""
 private_key_path                = ""
-region                          = "eu-zurich-1"
 tenancy_ocid                    = ""
 user_ocid                       = ""
 

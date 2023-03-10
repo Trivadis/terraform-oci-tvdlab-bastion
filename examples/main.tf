@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-# Trivadis AG, Infrastructure Managed Services
+# Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ---------------------------------------------------------------------------
 # Name.......: main.tf
@@ -29,7 +29,6 @@ provider "oci" {
   user_ocid        = var.user_ocid
   fingerprint      = var.fingerprint
   private_key_path = var.private_key_path
-  region           = var.region
 }
 
 module "tvdlab-bastion" {
@@ -38,7 +37,6 @@ module "tvdlab-bastion" {
 
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid   = var.tenancy_ocid
-  region         = var.region
   compartment_id = var.compartment_id
   # either ssh_public_key or ssh_public_key_path must be specified
   ssh_public_key      = var.ssh_public_key
