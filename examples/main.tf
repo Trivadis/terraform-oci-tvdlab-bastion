@@ -31,60 +31,6 @@ provider "oci" {
   private_key_path = var.private_key_path
 }
 
-module "tvdlab-bastion" {
-  source  = "Trivadis/tvdlab-bastion/oci"
-  version = ">= 2.0.0"
-
-  # - Mandatory Parameters --------------------------------------------------
-  tenancy_ocid   = var.tenancy_ocid
-  compartment_id = var.compartment_id
-  # either ssh_public_key or ssh_public_key_path must be specified
-  ssh_public_key      = var.ssh_public_key
-  ssh_public_key_path = var.ssh_public_key_path
-  bastion_subnet      = module.tvdlab-vcn.public_subnet_id
-
-  # - Optional Parameters ---------------------------------------------------
-  # general oci parameters
-  ad_index     = var.ad_index
-  label_prefix = var.label_prefix
-  defined_tags = var.bastion_defined_tags
-  tags         = var.tags
-
-  # Lab Configuration
-  resource_name    = local.resource_name
-  tvd_domain       = var.tvd_domain
-  tvd_participants = var.tvd_participants
-
-  # bastion parameters
-  bastion_enabled              = var.bastion_enabled
-  bastion_dns_registration     = var.bastion_dns_registration
-  bastion_name                 = var.bastion_name
-  bastion_image_id             = var.bastion_image_id
-  bastion_shape                = var.bastion_shape
-  bastion_ocpus                = var.bastion_ocpus
-  bastion_memory_in_gbs        = var.bastion_memory_in_gbs
-  bootstrap_cloudinit_template = var.bootstrap_cloudinit_template
-  post_bootstrap_config        = var.post_bootstrap_config
-  bastion_state                = var.bastion_state
-  bastion_os                   = var.bastion_os
-  bastion_os_version           = var.bastion_os_version
-  bastion_boot_volume_size     = var.bastion_boot_volume_size
-  hosts_file                   = var.hosts_file
-  yum_upgrade                  = var.yum_upgrade
-  inbound_ssh_port             = var.inbound_ssh_port
-  inbound_vpn_port             = var.inbound_vpn_port
-  guacamole_enabled            = var.guacamole_enabled
-  guacamole_connections        = var.guacamole_connections
-  webhost_name                 = var.webhost_name
-  webproxy_name                = var.webproxy_name
-  fail2ban_template            = var.fail2ban_template
-  guacamole_user               = var.guacamole_user
-  guacadmin_user               = var.guacadmin_user
-  guacadmin_password           = var.guacadmin_password
-  admin_email                  = var.admin_email
-  staging                      = var.staging
-}
-
 # display public IPs of bastion hosts
 output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
