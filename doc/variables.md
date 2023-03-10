@@ -7,7 +7,6 @@ Variables for the configuration of the terraform module, defined in [variables](
 | Parameter      | Description                                                                                                                                                        | Values | Default |
 |----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|---------|
 | `tenancy_ocid` | Tenancy OCID where to create the resources. Required when configuring provider.                                                                                    | OCID   |         |
-| `region`       | Region where to provision the VCN. [List of regions](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm). Required when configuring provider. |        |         |
 
 ## General OCI
 
@@ -62,7 +61,7 @@ Specific parameter to configure the Trivadis LAB environment.
 
 | Parameter             | Description                                                                                    | Values | Default |
 |-----------------------|------------------------------------------------------------------------------------------------|--------|---------|
-| `availability_domain` | Effective name of the availability domain based on `var.region` and `var.ad_index`. |        |         |
+| `availability_domain` | Effective name of the availability domain based on region and `var.ad_index`. |        |         |
 | `bastion_image_id`    | Tenancy OCID where to create the resources. Required when configuring provider.                |        |         |
 | `resource_name`       | Local variable containing either the value of `var.resource_name` or the compartment name.     |        |         |
 | `resource_shortname`  | Short, lower case version of the `resource_name` variable.                                     |        |         |

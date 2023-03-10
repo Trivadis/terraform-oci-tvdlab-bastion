@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-# Trivadis AG, Infrastructure Managed Services
+# Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ---------------------------------------------------------------------------
 # Name.......: variables.tf
@@ -17,12 +17,6 @@
 # provider identity parameters ----------------------------------------------
 variable "tenancy_ocid" {
   description = "tenancy id where to create the resources"
-  type        = string
-}
-
-variable "region" {
-  # List of regions: https://docs.cloud.oracle.com/iaas/Content/General/Concepts/regions.htm#ServiceAvailabilityAcrossRegions
-  description = "The OCI region where resources will be created"
   type        = string
 }
 
@@ -126,6 +120,7 @@ variable "bastion_boot_volume_size" {
 variable "bastion_state" {
   description = "Whether bastion host should be either RUNNING or STOPPED state. "
   default     = "RUNNING"
+  type        = string
 }
 
 variable "bootstrap_cloudinit_template" {

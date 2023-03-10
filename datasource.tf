@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------------
-# Trivadis AG, Infrastructure Managed Services
+# Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ---------------------------------------------------------------------------
 # Name.......: datasource.tf
@@ -17,11 +17,6 @@
 # get list of availability domains
 data "oci_identity_availability_domains" "ad_list" {
   compartment_id = var.tenancy_ocid
-}
-
-# get tenancy information
-data "oci_identity_tenancy" "tenancy" {
-  tenancy_id = var.tenancy_ocid
 }
 
 # get compartment information
