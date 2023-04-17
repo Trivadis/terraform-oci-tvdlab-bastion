@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [2.3.5] - 2023-04-17
+
+### Fixed
+
+- fix docker repo url
+- remove wrong parameter for yum in *bastion_host_ol7.yaml*
+
 ## [2.3.4] - 2023-04-17
 
 ### Changed
