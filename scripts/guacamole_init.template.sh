@@ -56,7 +56,7 @@ echo "INFO: Start to initialize the guacamole stack at $(date)"
 
 # get latest release of docker-compose
 if ! command -v docker-compose &> /dev/null; then
-    DOCKER_COMPOSE_URL=$(curl -sL https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url'|grep -E "$(uname -s)-$(uname -m)$")
+    DOCKER_COMPOSE_URL=$(curl -sL https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url'|grep -iE "$(uname -s)-$(uname -m)$")
     DOCKER_COMPOSE_RELEASE=$(echo $DOCKER_COMPOSE_URL|sed -e 's/.*\([[:digit:]]\+\.[[:digit:]]\+\.[[:digit:]]\+\).*/\1/')
     curl -L "$DOCKER_COMPOSE_URL" -o /usr/local/bin/docker-compose
     curl -L "https://raw.githubusercontent.com/docker/compose/$DOCKER_COMPOSE_RELEASE/contrib/completion/bash/docker-compose" -o /etc/bash_completion.d/docker-compose
