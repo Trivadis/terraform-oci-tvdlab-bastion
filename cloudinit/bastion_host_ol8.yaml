@@ -1,8 +1,8 @@
 #cloud-config
-# ----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ----------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: bastion_host.yaml 
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
@@ -11,23 +11,16 @@
 # Purpose....: cloud-init configuration file for bastion hosts
 # Notes......: --
 # Reference..: --
-# ----------------------------------------------------------------------------
-# --- Install/upgrade yum packages -------------------------------------------
+# ------------------------------------------------------------------------------
+# --- Install/upgrade yum packages ---------------------------------------------
 package_upgrade: ${yum_upgrade} # Enable yum update
 packages:                       # install additional packages
   - git                         # Fast Version Control System
   - tmux                        # A terminal multiplexer
   - firewalld                   # A firewall daemon with D-Bus interface providing a dynamic firewall
-# --- EOF Install/upgrade yum packages ---------------------------------------
+# --- EOF Install/upgrade yum packages -----------------------------------------
 
-# --- Add / Update YUM Repositories ------------------------------------------
-yum_repos:
-  docker-ce:
-    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-    name: Docker CE
-# --- EOF Add / Update YUM Repositories --------------------------------------
-
-# --- Create users -----------------------------------------------------------
+# --- Create users -------------------------------------------------------------
 users:
   - default
   - name: ${guacamole_user}
@@ -36,54 +29,54 @@ users:
     shell: /bin/bash
     groups: users, docker
     lock_passwd: true
-# --- EOF Create users -------------------------------------------------------
+# --- EOF Create users ---------------------------------------------------------
 
-# --- Update remote files ----------------------------------------------------
+# --- Update remote files ------------------------------------------------------
 write_files:
-# Add fail2ban configuration file --------------------------------------------
+# Add fail2ban configuration file ----------------------------------------------
   - path: "/etc/fail2ban/jail.local"
     permissions: "0644"
     encoding: "gzip+base64"
     content: |
       ${fail2ban_config}
 
-# Add Guacamole initialization script ----------------------------------------
+# Add Guacamole initialization script ------------------------------------------
   - path: "/home/${guacamole_user}/guacamole_init.sh"
     permissions: "0755"
     encoding: "gzip+base64"
     content: |
       ${guacamole_initialization}
 
-# Add post bootstrap script -------------------------------------------------------
+# Add post bootstrap script ----------------------------------------------------
   - path: "/root/post_bootstrap_config.sh"
     permissions: "0750"
     encoding: "gzip+base64"
     content: |
       ${post_bootstrap_config}
 
-# Add Guacamole connections script -------------------------------------------
+# Add Guacamole connections script ---------------------------------------------
   - path: "/home/${guacamole_user}/02_connections.sql"
     permissions: "0644"
     encoding: "gzip+base64"
     content: |
       ${guacamole_connections}
 
-# Add Guacamole SSH authorized keys ------------------------------------------
+# Add Guacamole SSH authorized keys --------------------------------------------
   - path: "/home/${guacamole_user}/.ssh/authorized_keys"
     permissions: "0600"
     encoding: "gzip+base64"
     content: |
       ${authorized_keys}
 
-# Append /etc/hosts with custom hosts entries --------------------------------
+# Append /etc/hosts with custom hosts entries ----------------------------------
   - path: /etc/hosts
     append: true
     encoding: "gzip+base64"
     content: |
       ${etc_hosts}
-# --- EOF Update remote files ------------------------------------------------
+# --- EOF Update remote files --------------------------------------------------
 
-# --- Run configuration commands ---------------------------------------------
+# --- Run configuration commands -----------------------------------------------
 runcmd:
 # Configure firewalld for SSH, guacamole (HTTP/HTTPS) and MOSH
   - firewall-offline-cmd --add-service=http
@@ -99,6 +92,7 @@ runcmd:
 
 # configure tools from development repositories
   - dnf config-manager --set-enabled ol8_developer --set-enabled ol8_developer_EPEL
+  - dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
   - dnf install -y tmux pwgen fail2ban docker-ce --nobest
 
 # configure automatic download / updates
@@ -129,5 +123,5 @@ runcmd:
 
 # Post Bootstrap
   - nohup /root/post_bootstrap_config.sh > /root/post_bootstrap_config.log 2>&1 & 
-# --- EOF Run configuration commands -----------------------------------------
-# --- EOF --------------------------------------------------------------------
+# --- EOF Run configuration commands -------------------------------------------
+# --- EOF ----------------------------------------------------------------------
