@@ -22,7 +22,9 @@ packages:                       # install additional packages
 
 # --- Add / Update YUM Repositories ------------------------------------------
 yum_repos:
-  baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+  docker-ce:
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+    name: Docker CE
 # --- EOF Add / Update YUM Repositories --------------------------------------
 
 # --- Create users -----------------------------------------------------------
