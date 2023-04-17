@@ -16,6 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [2.3.6] - 2023-04-17
+
+### Added
+
+- add *cloud-init* output using *tee* to capture all subprocess output into a
+  logfile e.g. */var/log/cloud-init-output.log*
+
 ## [2.3.5] - 2023-04-17
 
 ### Fixed
