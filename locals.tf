@@ -33,7 +33,7 @@ locals {
     vpn_port    = var.inbound_vpn_port
   }))
 
-  default_bootstrap_template_name = startswith(var.bastion_os_version, "8") ? "bastion_host_ol8.yaml" : "bastion_host_ol7.yaml"
+  default_bootstrap_template_name = var.bastion_os_version == "8" ? "bastion_host_ol8.yaml" : "bastion_host_ol7.yaml"
   # define and render cloudinit bootstrap configuration
   bootstrap_cloudinit_template = var.bootstrap_cloudinit_template == "" ? "${path.module}/cloudinit/${local.default_bootstrap_template_name}" : var.bootstrap_cloudinit_template
   #default_private_dns = cidrhost(cidrsubnet(var.vcn_cidr, var.private_newbits, var.private_netnum), var.tvd_dns_hostnum)
