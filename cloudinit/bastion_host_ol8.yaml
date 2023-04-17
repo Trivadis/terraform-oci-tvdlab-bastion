@@ -11,6 +11,8 @@
 # Purpose....: cloud-init configuration file for bastion hosts
 # Notes......: --
 # Reference..: --
+# License....: Apache License Version 2.0, January 2004 as shown
+#              at http://www.apache.org/licenses/
 # ------------------------------------------------------------------------------
 # Capture all subprocess output into a logfile
 output: {all: '| tee -a /var/log/cloud-init-output.log'}
@@ -81,7 +83,7 @@ write_files:
 
 # --- Run configuration commands -----------------------------------------------
 runcmd:
-# Configure firewalld for SSH, guacamole (HTTP/HTTPS) and MOSH
+# Configure firewalld for SSH, guacamole (HTTP/HTTPS)
   - firewall-offline-cmd --add-service=http
   - firewall-offline-cmd --add-service=https 
   - firewall-offline-cmd --add-service=openvpn
@@ -96,7 +98,7 @@ runcmd:
 # configure tools from development repositories
   - dnf config-manager --set-enabled ol8_developer --set-enabled ol8_developer_EPEL
   - dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-  - dnf install -y tmux pwgen fail2ban docker-ce
+  - dnf install -y pwgen fail2ban docker-ce
 
 # configure automatic download / updates
   - dnf install -y dnf-automatic
@@ -107,7 +109,7 @@ runcmd:
 # install and configure docker
   - systemctl enable docker.service
   - systemctl start docker.service
-  - rm -f /etc/bash_completion.d/docker-compose
+  - rm -vf /etc/bash_completion.d/docker-compose
 
 # configure fail2ban service
   - systemctl enable fail2ban
