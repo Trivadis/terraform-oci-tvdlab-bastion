@@ -150,5 +150,7 @@ cat << EOF >/etc/motd
 
 EOF
 
+# remove failing bash completion for docker-compose
+rm -vf /etc/bash_completion.d/docker-compose
 echo "INFO: Finish the configuration of the guacamole stack at $(date)" 
 # --- EOF --------------------------------------------------------------------
