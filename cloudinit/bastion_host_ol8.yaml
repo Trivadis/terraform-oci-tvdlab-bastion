@@ -92,8 +92,8 @@ runcmd:
 
 # configure tools from development repositories
   - dnf config-manager --set-enabled ol8_developer --set-enabled ol8_developer_EPEL
-  - dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-  - dnf install -y tmux pwgen fail2ban docker-ce --nobest
+  - dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  - dnf install -y tmux pwgen fail2ban docker-ce
 
 # configure automatic download / updates
   - dnf install -y dnf-automatic

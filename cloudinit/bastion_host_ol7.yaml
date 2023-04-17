@@ -92,8 +92,8 @@ runcmd:
 
 # configure tools from development repositories
   - yum-config-manager --enable ol7_developer --enable ol7_developer_EPEL
-  - yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  - yum install -y mosh tmux pwgen fail2ban docker-ce --nobest
+  - yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  - yum install -y mosh tmux pwgen fail2ban docker-ce
 
 # configure automatic download / updates
   - yum install -y yum-cron
