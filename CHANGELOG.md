@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [2.3.1] - 2023-04-17
+
+### Fixed
+
+- remove string function *startswith* in locals.tf to make sure module is backward compatible
+
 ## [2.3.0] - 2023-04-17
 
 ### Added
