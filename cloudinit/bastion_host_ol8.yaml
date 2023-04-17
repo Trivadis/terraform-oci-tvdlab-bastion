@@ -106,11 +106,11 @@ runcmd:
   - sed -i 's/^apply_updates.*/apply_updates = yes/g' /etc/dnf/automatic.conf
   - systemctl enable --now dnf-automatic.timer
   - rm -f /etc/issue.d/cockpit.issue /etc/motd.d/cockpit
-  - rm -f /etc/bash_completion.d/docker-compose
 
 # install and configure docker
   - systemctl enable docker.service
   - systemctl start docker.service
+  - rm -f /etc/bash_completion.d/docker-compose
 
 # configure fail2ban service
   - systemctl enable fail2ban

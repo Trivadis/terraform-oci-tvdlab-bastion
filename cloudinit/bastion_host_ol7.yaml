@@ -111,6 +111,7 @@ runcmd:
 # install and configure docker
   - systemctl enable docker.service
   - systemctl start docker.service
+  - rm -f /etc/bash_completion.d/docker-compose
 
 # configure fail2ban service
   - systemctl enable fail2ban
