@@ -12,6 +12,9 @@
 # Notes......: --
 # Reference..: --
 # ------------------------------------------------------------------------------
+# Capture all subprocess output into a logfile
+output: {all: '| tee -a /var/log/cloud-init-output.log'}
+
 # --- Install/upgrade yum packages ---------------------------------------------
 package_upgrade: ${yum_upgrade} # Enable yum update
 packages:                       # install additional packages
