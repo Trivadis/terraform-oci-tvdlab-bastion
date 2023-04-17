@@ -16,6 +16,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [2.3.7] - 2023-04-18
+
+### Fixed
+
+- clean up *cloud-init* template
+- fix missing license in *cloud-init* template
+- add verbose mode for remove command
+- add remove command for docker-compose bash completion file to init script
+
 ## [2.3.6] - 2023-04-17
 
 ### Added
