@@ -65,7 +65,7 @@ variable "bastion_enabled" {
 
 variable "bastion_dns_registration" {
   description = "whether to register the bastion host in DNS zone"
-  default     = false
+  default     = true
   type        = bool
 }
 
