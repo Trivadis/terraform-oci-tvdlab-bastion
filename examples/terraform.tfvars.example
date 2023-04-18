@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: terraform.tfvars.example
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
@@ -12,51 +12,58 @@
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# provider identity parameters ----------------------------------------------
+# provider identity parameters -------------------------------------------------
 fingerprint                     = ""
 private_key_path                = ""
 tenancy_ocid                    = ""
 user_ocid                       = ""
 
-# general oci parameters ----------------------------------------------------
-compartment_id                  = ""
-label_prefix                    = "none"
-resource_name                   = ""
-availability_domain             = 1
-bastion_defined_tags            = { "Schedule.Weekend" = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
-"Schedule.WeekDay" = "0,0,0,0,0,0,0,*,*,*,*,*,*,*,*,*,*,*,*,*,0,0,0,0" }
-tags                            = {}
+# - Mandatory Parameters -------------------------------------------------------
+compartment_ocid                = ""   # OCID of the compartment where to create all resources
+ssh_public_key                  = ""   # Publiy keys for the authorized_keys file, which are used to access the bastion host.
 
-# Bastion Host Parameter ----------------------------------------------------
-bastion_enabled                 = false
-bastion_dns_registration        = true
-bastion_name                    = "bastion"
-bastion_image_id                = "OEL"
-bastion_os_version              = "7.9"
-bastion_shape                   = "VM.Standard.E4.Flex"
-bastion_boot_volume_size        = 50
-bastion_ocpus                   = 1
-bastion_memory_in_gbs           = 8
-bastion_state                   = "RUNNING"
-bootstrap_cloudinit_template    = ""
-post_bootstrap_config           = ""
-ssh_public_key                  = ""
-#bastion_subnet 
-hosts_file                      = ""
-webhost_name                    = "www"
-webproxy_name                   = "www.trivadislabs.com"
-guacamole_enabled               = true
-guacamole_connections           = ""
-#fail2ban_template              = ""
-#guacamole_user                 = "avocado"
-#guacadmin_user                 = "guacadmin"
-#guacadmin_password             = ""
-#admin_email                    = "admin@domain.com"
-staging                         = 1
+# general oci parameters -------------------------------------------------------
+numberOf_labs                   = 1                     # Number of similar lab environments to be created. Default just one environment.
+lab_domain                      = "trivadislabs.com"    # The domain name of the LAB environment
+label_prefix                    = "none"                # A string that will be prepended to all resources
+resource_name                   = ""                    # user-friendly string to name all resource. If undefined it will be derived from compartment name.
+ad_index                        = 1                     # The index of the availability domain. This is used to identify the availability_domain place the compute instances.
+bastion_defined_tags            =   { "Schedule.Weekend" = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                                    "Schedule.WeekDay" = "0,0,0,0,0,0,0,*,*,*,*,*,*,*,*,*,*,*,*,*,0,0,0,0" }
+tags                            = {}                    # "A simple key-value pairs to tag the resources created
 
-# Trivadis LAB specific parameter -------------------------------------------
-numberOf_labs                   = 1
-lab_domain                      = "trivadislabs.com"
-# --- EOF -------------------------------------------------------------------
+# Bastion Host Parameter -------------------------------------------------------
+bastion_enabled                 = true                  # whether to create the bastion
+bastion_name                    = "bastion"             # Name portion of bastion host
+bastion_boot_volume_size        = 50                    # Size of the boot volume.
+bastion_image_id                = ""                    # Provide a custom image id for the bastion host or leave as OEL (Oracle Enterprise Linux).
+bastion_memory_in_gbs           = 4                     # The memory in gbs for the shape.
+bastion_ocpus                   = 1                     # The ocpus for the shape.
+bastion_image_id                = "OEL"                 # Base OS for the bastion host.
+bastion_os_version              = "8"                   # Define Base OS version for the bastion host.
+bastion_shape                   = "VM.Standard.E4.Flex" # The shape of bastion instance.
+bastion_state                   = "RUNNING"             # Whether bastion host should be either RUNNING or STOPPED state.
+bootstrap_cloudinit_template    = ""                    # Bootstrap script. If left out, it will use the embedded cloud-init configuration to boot the bastion host.
+post_bootstrap_config           = ""                    # Host environment config script used after bootstrap host.
+
+# Network Configuration --------------------------------------------------------
+inbound_ssh_port                = 22                    # Inbound SSH access port configured in security list.
+inbound_vpn_port                = 1194                  # Inbound OpenVPN access port configured in security list.
+fail2ban_template               = ""                    # path to a fail2ban configuration template file
+hosts_file                      = ""                    # Content of a custom host file which has to be appended to /etc/hosts
+
+# Guacamole Configuration ------------------------------------------------------
+admin_email                     = "admin@domain.com"    # Admin email used to configure Let's encrypt.
+bastion_dns_registration        = true                  # whether to register the bastion host in DNS zone
+webproxy_name                   = ""                    # web proxy name used configure nginx
+webhost_name                    = ""                    # web host name used configure nginx / dns
+guacadmin_password              = ""                    # Guacamole console admin user password. If password is empty it will be autogenerate during setup.
+guacamole_user                  = "avocado"             # Guacamole OS user name
+guacamole_connections           = ""                    # path to a custom guacamole connections SQL script
+guacamole_enabled               = true                  # whether to configure guacamole or not
+guacadmin_user                  = "guacadmin"           # Guacamole console admin user
+staging                         = 0                     # Set to 1 if you're testing your setup to avoid hitting request limits
+
+# --- EOF ----------------------------------------------------------------------

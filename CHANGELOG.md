@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - rename *tvd_participants* into *numberOf_labs* e.g. Number of lab environments.
 - change default OS to OL8
 - update *bastion.tf* example
+- update *terraform.tfvars* example
 
 ### Fixed
 
