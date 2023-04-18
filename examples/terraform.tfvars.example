@@ -46,7 +46,6 @@ ssh_public_key                  = ""
 ssh_public_key_path             = ""
 #bastion_subnet 
 hosts_file                      = ""
-yum_upgrade                     = false
 webhost_name                    = "www"
 webproxy_name                   = "www.trivadislabs.com"
 guacamole_enabled               = true

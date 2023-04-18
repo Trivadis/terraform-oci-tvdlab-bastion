@@ -46,7 +46,6 @@ Variables for the configuration of the terraform module, defined in [variables](
 | `ssh_public_key_path`      | Path to the ssh public key used to access the bastion. set this or the `ssh_public_key`                    |                   | n/a                                  |
 | `ssh_public_key`           | The content of the ssh public key used to access the bastion. set this or the `ssh_public_key_path`        |                   | n/a                                  |
 | `staging`                  | Set to 1 if you're testing your setup to avoid hitting request limits                                      | 0/1               | 0                                    |
-| `yum_upgrade`              | Enable YUM upgrade during bootstrap / cloud-init                                                           | true/false        | true                                 |
 
 ## Trivadis LAB
 

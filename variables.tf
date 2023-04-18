@@ -170,12 +170,6 @@ variable "hosts_file" {
   type        = string
 }
 
-variable "yum_upgrade" {
-  description = "Enable YUM upgrade during bootstrap / cloud-init"
-  default     = true
-  type        = bool
-}
-
 variable "guacamole_enabled" {
   description = "whether to configure guacamole or not"
   default     = true
