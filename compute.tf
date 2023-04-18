@@ -53,7 +53,7 @@ resource "oci_core_instance" "bastion" {
         host_name          = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
         domain_name        = var.lab_domain
         admin_email        = var.admin_email
-        staging            = var.staging
+        staging            = local.staging
         vpn_port           = var.inbound_vpn_port
         guacamole_enabled  = var.guacamole_enabled
         guacamole_user     = var.guacamole_user
