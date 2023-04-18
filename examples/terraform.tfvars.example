@@ -43,7 +43,6 @@ bastion_state                   = "RUNNING"
 bootstrap_cloudinit_template    = ""
 post_bootstrap_config           = ""
 ssh_public_key                  = ""
-ssh_public_key_path             = ""
 #bastion_subnet 
 hosts_file                      = ""
 webhost_name                    = "www"

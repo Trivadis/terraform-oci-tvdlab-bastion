@@ -19,8 +19,6 @@ locals {
   resource_name       = var.resource_name == "" ? data.oci_identity_compartment.compartment.name : var.resource_name
   resource_shortname  = lower(replace(local.resource_name, "-", ""))
   bastion_image_id    = var.bastion_image_id == "OEL" ? data.oci_core_images.oracle_images.images[0].id : var.bastion_image_id
-  ssh_public_key_path = var.ssh_public_key_path == "" ? "${path.module}/etc/authorized_keys.template" : var.ssh_public_key_path
-  ssh_authorized_keys = var.ssh_public_key != "" ? var.ssh_public_key : file(local.ssh_public_key_path)
   hosts_file          = var.hosts_file == "" ? "${path.module}/etc/hosts.template" : var.hosts_file
 
   post_bootstrap_config = var.post_bootstrap_config == "" ? "${path.module}/cloudinit/bastion_config.template.sh" : var.post_bootstrap_config
