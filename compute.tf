@@ -15,7 +15,7 @@
 # ---------------------------------------------------------------------------
 
 resource "oci_core_instance" "bastion" {
-  count               = var.bastion_enabled == true ? var.tvd_participants : 0
+  count               = var.bastion_enabled == true ? var.numberOf_labs : 0
   availability_domain = local.availability_domain
   compartment_id      = var.compartment_id
   display_name        = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
@@ -39,7 +39,6 @@ resource "oci_core_instance" "bastion" {
   metadata = {
     ssh_authorized_keys = local.ssh_authorized_keys
     user_data = base64gzip(templatefile(local.bootstrap_cloudinit_template, {
-      yum_upgrade           = var.yum_upgrade
       guacamole_user        = var.guacamole_user
       ssh_port              = var.inbound_ssh_port
       vpn_port              = var.inbound_vpn_port
@@ -52,7 +51,7 @@ resource "oci_core_instance" "bastion" {
         webhost_name       = var.webhost_name
         webproxy_name      = var.webproxy_name
         host_name          = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
-        domain_name        = var.tvd_domain
+        domain_name        = var.lab_domain
         admin_email        = var.admin_email
         staging            = var.staging
         vpn_port           = var.inbound_vpn_port

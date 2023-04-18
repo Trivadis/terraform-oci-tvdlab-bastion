@@ -16,6 +16,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.0] - 2023-04-18
+
+### Added
+
+### Changed
+
+- rename *tvd_domain* to *lab_domain*
+
+### Fixed
+
+### Removed
+
+### Ideas
+
+- remove variable *bastion_dns_registration* make dns registration based on availability of a zone
+- verify which ssh config is necessary e.g. *ssh_public_key*, *ssh_public_key_path*, etc
+- simplify *webproxy_name* and *webhost_name* again
+- rename *tvd_participants* into *numberOf_labs* e.g. Number of lab environments.
+- consider if all files still need to be as parameter
+- simplify *bastion_image_id*, *bastion_os* and *bastion_os_version*
+- remove the variable *yum_upgrade*. The configuration will now be upgraded by
+  default. If the upgrade is not necessary/desired, it must be specified in a
+  custom cloud-init yaml file.
+
 ## [2.3.7] - 2023-04-18
 
 ### Fixed

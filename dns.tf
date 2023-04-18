@@ -17,11 +17,11 @@
 # update DNS
 resource "oci_dns_rrset" "bastion" {
   count           = var.bastion_enabled == true && var.bastion_dns_registration == true ? var.tvd_participants : 0
-  zone_name_or_id = var.tvd_domain
-  domain          = join(".", [oci_core_instance.bastion[count.index].hostname_label, var.tvd_domain])
+  zone_name_or_id = var.lab_domain
+  domain          = join(".", [oci_core_instance.bastion[count.index].hostname_label, var.lab_domain])
   rtype           = "A"
   items {
-    domain = join(".", [oci_core_instance.bastion[count.index].hostname_label, var.tvd_domain])
+    domain = join(".", [oci_core_instance.bastion[count.index].hostname_label, var.lab_domain])
     rtype  = "A"
     rdata  = oci_core_instance.bastion[count.index].public_ip
     ttl    = 30
@@ -31,11 +31,11 @@ resource "oci_dns_rrset" "bastion" {
 
 resource "oci_dns_rrset" "webhost" {
   count           = var.bastion_enabled == true && var.bastion_dns_registration == true && var.webhost_name != "" ? var.tvd_participants : 0
-  zone_name_or_id = var.tvd_domain
-  domain          = join(".", [var.webhost_name, var.tvd_domain])
+  zone_name_or_id = var.lab_domain
+  domain          = join(".", [var.webhost_name, var.lab_domain])
   rtype           = "A"
   items {
-    domain = join(".", [var.webhost_name, var.tvd_domain])
+    domain = join(".", [var.webhost_name, var.lab_domain])
     rtype  = "A"
     rdata  = oci_core_instance.bastion[0].public_ip
     ttl    = 30

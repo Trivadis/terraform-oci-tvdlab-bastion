@@ -42,10 +42,10 @@ output "bastion_dns_records" {
 
 output "bastion_ssh_access" {
   description = "SSH access string for bastion hosts with specific port"
-  value       = formatlist("ssh -A -p ${var.inbound_ssh_port} opc@%s.${var.tvd_domain}", oci_core_instance.bastion[*].hostname_label)
+  value       = formatlist("ssh -A -p ${var.inbound_ssh_port} opc@%s.${var.lab_domain}", oci_core_instance.bastion[*].hostname_label)
 }
 output "bastion_public_url" {
   description = "Bastion Apache Guacammole URL."
-  value       = formatlist("http://%s.${var.tvd_domain}/guacamole", oci_core_instance.bastion[*].hostname_label)
+  value       = formatlist("http://%s.${var.lab_domain}/guacamole", oci_core_instance.bastion[*].hostname_label)
 }
 # --- EOF -------------------------------------------------------------------
