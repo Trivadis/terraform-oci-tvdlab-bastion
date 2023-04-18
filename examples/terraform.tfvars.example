@@ -31,7 +31,7 @@ tags                            = {}
 
 # Bastion Host Parameter ----------------------------------------------------
 bastion_enabled                 = false
-bastion_dns_registration        = false
+bastion_dns_registration        = true
 bastion_name                    = "bastion"
 bastion_image_id                = "OEL"
 bastion_os_version              = "7.9"
