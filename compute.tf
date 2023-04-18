@@ -39,6 +39,7 @@ resource "oci_core_instance" "bastion" {
   metadata = {
     ssh_authorized_keys = local.ssh_authorized_keys
     user_data = base64gzip(templatefile(local.bootstrap_cloudinit_template, {
+      yum_upgrade           = var.yum_upgrade
       guacamole_user        = var.guacamole_user
       ssh_port              = var.inbound_ssh_port
       vpn_port              = var.inbound_vpn_port

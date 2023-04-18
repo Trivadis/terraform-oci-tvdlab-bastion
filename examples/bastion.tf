@@ -25,9 +25,9 @@ module "tvdlab-bastion" {
 
   # - Optional Parameters ------------------------------------------------------
   # Lab Configuration
-  resource_name    = local.resource_name
-  lab_domain       = var.lab_domain
-  tvd_participants = var.tvd_participants
+  resource_name = local.resource_name
+  lab_domain    = var.lab_domain
+  numberOf_labs = var.numberOf_labs
 
   # general oci parameters
   ad_index     = var.ad_index

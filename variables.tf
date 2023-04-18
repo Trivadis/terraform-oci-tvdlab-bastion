@@ -237,8 +237,8 @@ variable "staging" {
 }
 
 # Trivadis LAB specific parameter -------------------------------------------
-variable "tvd_participants" {
-  description = "The number of VCN to create"
+variable "numberOf_labs" {
+  description = "Number of similar lab environments to be created. Default just one environment."
   type        = number
   default     = 1
 }
