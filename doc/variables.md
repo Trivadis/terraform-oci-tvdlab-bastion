@@ -55,7 +55,7 @@ Specific parameter to configure the Trivadis LAB environment.
 | Parameter          | Description                                                                                                                               | Values | Default          |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------|--------|------------------|
 | `tvd_participants` | The number of bastion resource to create. This is used to build several identical environments for a training and laboratory environment. |        | 1                |
-| `tvd_domain`       | The domain name of the LAB environment. This is used to register the public IP address of the bastion host.                               |        | trivadislabs.com |
+| `lab_domain`       | The domain name of the LAB environment. This is used to register the public IP address of the bastion host.                               |        | trivadislabs.com |
 
 ## Local Variables
 

@@ -60,5 +60,5 @@ staging                         = 1
 
 # Trivadis LAB specific parameter -------------------------------------------
 tvd_participants                = 1
-tvd_domain                      = "trivadislabs.com"
+lab_domain                      = "trivadislabs.com"
 # --- EOF -------------------------------------------------------------------
