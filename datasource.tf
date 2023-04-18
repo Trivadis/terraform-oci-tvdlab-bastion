@@ -33,4 +33,10 @@ data "oci_core_images" "oracle_images" {
   sort_by                  = "TIMECREATED"
 }
 
+# query for the NS record of the LAB domain to see if we have a DNS Zone
+data "oci_dns_rrset" "lab_domain" {
+  domain          = var.lab_domain
+  rtype           = "NS"
+  zone_name_or_id = var.lab_domain
+}
 # --- EOF -------------------------------------------------------------------
