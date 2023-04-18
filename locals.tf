@@ -15,6 +15,8 @@
 # ---------------------------------------------------------------------------
 
 locals {
+  dns_registration    = data.oci_dns_rrset.lab_domain.id == null ? false : var.bastion_dns_registration
+  staging             = local.dns_registration ? 0 : var.staging
   availability_domain = data.oci_identity_availability_domains.ad_list.availability_domains[var.ad_index - 1].name
   resource_name       = var.resource_name == "" ? data.oci_identity_compartment.compartment.name : var.resource_name
   resource_shortname  = lower(replace(local.resource_name, "-", ""))
@@ -34,7 +36,5 @@ locals {
   default_bootstrap_template_name = var.bastion_os_version == "8" ? "bastion_host_ol8.yaml" : "bastion_host_ol7.yaml"
   # define and render cloudinit bootstrap configuration
   bootstrap_cloudinit_template = var.bootstrap_cloudinit_template == "" ? "${path.module}/cloudinit/${local.default_bootstrap_template_name}" : var.bootstrap_cloudinit_template
-  #default_private_dns = cidrhost(cidrsubnet(var.vcn_cidr, var.private_newbits, var.private_netnum), var.tvd_dns_hostnum)
-  #vcn_cidr            = data.oci_core_vcn.vcn.cidr_block
 }
 # --- EOF -------------------------------------------------------------------
