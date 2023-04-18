@@ -29,6 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- remove the variable *yum_upgrade*. The configuration will now be upgraded by
+  default. If the upgrade is not necessary/desired, it must be specified in a
+  custom cloud-init yaml file.
+
 ### Ideas
 
 - remove variable *bastion_dns_registration* make dns registration based on availability of a zone

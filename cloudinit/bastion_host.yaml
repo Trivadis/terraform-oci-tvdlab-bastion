@@ -13,7 +13,7 @@
 # Reference..: --
 # ----------------------------------------------------------------------------
 # --- Install/upgrade yum packages -------------------------------------------
-package_upgrade: ${yum_upgrade} # Enable yum update
+package_upgrade: true           # Enable yum update
 packages:                       # install additional packages
   - git                         # Fast Version Control System
   - tmux                        # A terminal multiplexer

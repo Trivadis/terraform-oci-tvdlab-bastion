@@ -62,6 +62,5 @@ module "tvdlab-bastion" {
   guacamole_user               = var.guacamole_user
   hosts_file                   = local.hosts_file
   staging                      = local.staging_enabled
-  yum_upgrade                  = var.yum_upgrade
 }
 # --- EOF ----------------------------------------------------------------------
