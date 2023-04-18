@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - rename *tvd_domain* to *lab_domain*
 - rename *tvd_participants* into *numberOf_labs* e.g. Number of lab environments.
+- change default OS to OL8
+- update *bastion.tf* example
 
 ### Fixed
 
@@ -37,11 +39,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   custom cloud-init yaml file.
 - remove *ssh_public_key_path*. Bastion host now requires in any case a valid ssh
   key via *ssh_public_key*. e.g. key handling has to be done outside of the module
-
-### Ideas
-
-- simplify *webproxy_name* and *webhost_name* again
-- consider if all files still need to be as parameter
 
 ## [2.3.7] - 2023-04-18
 
