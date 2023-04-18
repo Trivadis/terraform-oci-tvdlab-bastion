@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - rename *tvd_domain* to *lab_domain*
+- rename *tvd_participants* into *numberOf_labs* e.g. Number of lab environments.
 
 ### Fixed
 
@@ -33,7 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - remove variable *bastion_dns_registration* make dns registration based on availability of a zone
 - verify which ssh config is necessary e.g. *ssh_public_key*, *ssh_public_key_path*, etc
 - simplify *webproxy_name* and *webhost_name* again
-- rename *tvd_participants* into *numberOf_labs* e.g. Number of lab environments.
 - consider if all files still need to be as parameter
 - simplify *bastion_image_id*, *bastion_os* and *bastion_os_version*
 - remove the variable *yum_upgrade*. The configuration will now be upgraded by

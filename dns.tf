@@ -16,7 +16,7 @@
 
 # update DNS
 resource "oci_dns_rrset" "bastion" {
-  count           = var.bastion_enabled == true && var.bastion_dns_registration == true ? var.tvd_participants : 0
+  count           = var.bastion_enabled == true && var.bastion_dns_registration == true ? var.numberOf_labs : 0
   zone_name_or_id = var.lab_domain
   domain          = join(".", [oci_core_instance.bastion[count.index].hostname_label, var.lab_domain])
   rtype           = "A"
@@ -30,7 +30,7 @@ resource "oci_dns_rrset" "bastion" {
 }
 
 resource "oci_dns_rrset" "webhost" {
-  count           = var.bastion_enabled == true && var.bastion_dns_registration == true && var.webhost_name != "" ? var.tvd_participants : 0
+  count           = var.bastion_enabled == true && var.bastion_dns_registration == true && var.webhost_name != "" ? var.numberOf_labs : 0
   zone_name_or_id = var.lab_domain
   domain          = join(".", [var.webhost_name, var.lab_domain])
   rtype           = "A"

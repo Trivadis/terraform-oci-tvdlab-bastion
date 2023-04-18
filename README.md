@@ -39,7 +39,7 @@ module "tvdlab-bastion" {
 }
 ```
 
-To create multiple bastion hosts in different VCNs just specify the `tvd_participants` parameter. The following example will create 3 bastion hosts in the provided subnets. It is expected that `bastion_subnet` contains 3 different subnets.
+To create multiple bastion hosts in different VCNs just specify the `numberOf_labs` parameter. The following example will create 3 bastion hosts in the provided subnets. It is expected that `bastion_subnet` contains 3 different subnets.
 
 ```bash
 module "tvdlab-bastion" {
@@ -51,7 +51,7 @@ module "tvdlab-bastion" {
   compartment_id        = var.compartment_id
   ssh_public_key_path   = var.ssh_public_key_path
   bastion_subnet        = module.tvdlab-vcn.public_subnet_id
-  tvd_participants      = 3
+  numberOf_labs      = 3
 }
 ```
 
