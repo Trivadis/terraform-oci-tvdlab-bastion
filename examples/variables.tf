@@ -135,13 +135,7 @@ variable "post_bootstrap_config" {
 }
 
 variable "ssh_public_key" {
-  description = "the content of the ssh public key used to access the bastion. set this or the ssh_public_key_path"
-  default     = ""
-  type        = string
-}
-
-variable "ssh_public_key_path" {
-  description = "path to the ssh public key used to access the bastion. set this or the ssh_public_key"
+  description = "Publiy keys for the authorized_keys file, which are used to access the bastion host."
   default     = ""
   type        = string
 }

@@ -34,7 +34,7 @@ module "tvdlab-bastion" {
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = var.compartment_id
-  ssh_public_key_path   = var.ssh_public_key_path
+  ssh_public_key        = var.ssh_public_key
   bastion_subnet        = module.tvdlab-vcn.public_subnet_id
 }
 ```
@@ -49,9 +49,9 @@ module "tvdlab-bastion" {
   # - Mandatory Parameters --------------------------------------------------
   tenancy_ocid          = var.tenancy_ocid
   compartment_id        = var.compartment_id
-  ssh_public_key_path   = var.ssh_public_key_path
+  ssh_public_key        = var.ssh_public_key
   bastion_subnet        = module.tvdlab-vcn.public_subnet_id
-  numberOf_labs      = 3
+  numberOf_labs         = 3
 }
 ```
 

@@ -37,13 +37,13 @@ resource "oci_core_instance" "bastion" {
   }
 
   metadata = {
-    ssh_authorized_keys = local.ssh_authorized_keys
+    ssh_authorized_keys = var.ssh_public_key
     user_data = base64gzip(templatefile(local.bootstrap_cloudinit_template, {
       guacamole_user        = var.guacamole_user
       ssh_port              = var.inbound_ssh_port
       vpn_port              = var.inbound_vpn_port
       guacamole_connections = base64gzip(local.guacamole_connections)
-      authorized_keys       = base64gzip(local.ssh_authorized_keys)
+      authorized_keys       = base64gzip(var.ssh_public_key)
       etc_hosts             = base64gzip(local.hosts_file)
       fail2ban_config       = local.fail2ban_config
       post_bootstrap_config = base64gzip(local.post_bootstrap_config)

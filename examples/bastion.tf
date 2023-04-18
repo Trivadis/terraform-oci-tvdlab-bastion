@@ -18,10 +18,9 @@ module "tvdlab-bastion" {
   version = ">= 2.2.0" # to limit module version specifiy upper / lower version = ">= 0.5.0, < 2.0.0"
 
   # - Mandatory Parameters -----------------------------------------------------
-  compartment_id      = var.compartment_ocid
-  tenancy_ocid        = var.tenancy_ocid
-  ssh_public_key      = local.ssh_authorized_keys
-  ssh_public_key_path = var.ssh_public_key_path
+  compartment_id = var.compartment_ocid
+  tenancy_ocid   = var.tenancy_ocid
+  ssh_public_key = var.ssh_public_key
 
   # - Optional Parameters ------------------------------------------------------
   # Lab Configuration
