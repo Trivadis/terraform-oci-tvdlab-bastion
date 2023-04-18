@@ -89,7 +89,7 @@ variable "bastion_os" {
 
 variable "bastion_os_version" {
   description = "Define Base OS version for the bastion host."
-  default     = "7.8"
+  default     = "8"
   type        = string
 }
 
@@ -118,7 +118,7 @@ variable "bastion_boot_volume_size" {
 }
 
 variable "bastion_state" {
-  description = "Whether bastion host should be either RUNNING or STOPPED state. "
+  description = "Whether bastion host should be either RUNNING or STOPPED state."
   default     = "RUNNING"
   type        = string
 }
