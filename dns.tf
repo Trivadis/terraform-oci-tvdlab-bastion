@@ -1,18 +1,18 @@
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: dns.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: DNS registration for bastion jost.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # update DNS
 resource "oci_dns_rrset" "bastion" {
@@ -40,6 +40,5 @@ resource "oci_dns_rrset" "webhost" {
     rdata  = oci_core_instance.bastion[0].public_ip
     ttl    = 30
   }
-
 }
-# --- EOF -------------------------------------------------------------------
+# --- EOF ----------------------------------------------------------------------

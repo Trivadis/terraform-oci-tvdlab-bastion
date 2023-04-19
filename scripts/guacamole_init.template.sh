@@ -1,19 +1,19 @@
 #!/bin/bash
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: guacamole_init.template.sh 
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Template script to initialize the guacamole stack.
 # Notes......: --
 # Reference..: --
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# - Customization -----------------------------------------------------------
+# - Customization --------------------------------------------------------------
 EMAIL="${admin_email}"                      # A valid address is strongly recommended for lets encrypt
 HOSTNAME="${host_name}"                     # Hostname for the bastion host
 DOMAINNAME="${domain_name}"                 # Domainname for the bastion host
@@ -25,9 +25,9 @@ GUACAMOLE_USER=${guacamole_user}
 GUACADMIN_USER="${guacadmin_user}"          # guacadmin user name   
 GUACADMIN_PASSWORD="${guacadmin_password}"  # Password for the guacadmin user
 GUACAMOLE_ENABLED="${guacamole_enabled}"    # enable guacamole setup
-# - End of Customization ----------------------------------------------------
+# - End of Customization -------------------------------------------------------
 
-# - Default Values ----------------------------------------------------------
+# - Default Values -------------------------------------------------------------
 export SCRIPT_NAME=$(basename "$0")
 export SCRIPT_BIN="$(cd "$(dirname "$BASH_SOURCE[0]")" ; pwd -P)"
 export SCRIPT_BASE="$(dirname $SCRIPT_BIN)"
@@ -37,9 +37,9 @@ export GUACAMOLE_CONSOLE="n/a"
 LOG_BASE="/var/log"
 TIMESTAMP=$(date "+%Y.%m.%d_%H%M%S")
 readonly LOGFILE="$LOG_BASE/$(basename $SCRIPT_NAME .sh)_$TIMESTAMP.log"
-# - EOF Default Values ------------------------------------------------------
+# - EOF Default Values ---------------------------------------------------------
 
-# - Initialization ----------------------------------------------------------
+# - Initialization -------------------------------------------------------------
 # Define a bunch of bash option see 
 # https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
 set -o nounset          # stop script after 1st cmd failed
@@ -51,7 +51,7 @@ touch $LOGFILE 2>/dev/null
 exec &> >(tee -a "$LOGFILE")    # Open standard out at `$LOG_FILE` for write.  
 exec 2>&1                       # Redirect standard error to standard out 
 
-# - Main --------------------------------------------------------------------
+# - Main -----------------------------------------------------------------------
 echo "INFO: Start to initialize the guacamole stack at $(date)" 
 
 # get latest release of docker-compose
@@ -153,4 +153,4 @@ EOF
 # remove failing bash completion for docker-compose
 rm -vf /etc/bash_completion.d/docker-compose
 echo "INFO: Finish the configuration of the guacamole stack at $(date)" 
-# --- EOF --------------------------------------------------------------------
+# --- EOF -----------------------------------------------------------------------

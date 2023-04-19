@@ -1,26 +1,26 @@
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: variables.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Variable file for the terraform module tvdlab bastion.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# provider identity parameters ----------------------------------------------
+# provider identity parameters -------------------------------------------------
 variable "tenancy_ocid" {
   description = "tenancy id where to create the resources"
   type        = string
 }
 
-# general oci parameters ----------------------------------------------------
+# general oci parameters -------------------------------------------------------
 variable "compartment_id" {
   description = "OCID of the compartment where to create all resources"
   type        = string
@@ -56,7 +56,7 @@ variable "tags" {
   default     = {}
 }
 
-# Bastion Host Parameter ----------------------------------------------------
+# Bastion Host Parameter -------------------------------------------------------
 variable "bastion_enabled" {
   description = "whether to create the bastion"
   default     = true
@@ -224,7 +224,7 @@ variable "staging" {
   type        = number
 }
 
-# Trivadis LAB specific parameter -------------------------------------------
+# Trivadis LAB specific parameter ----------------------------------------------
 variable "numberOf_labs" {
   description = "Number of similar lab environments to be created. Default just one environment."
   type        = number
@@ -236,4 +236,4 @@ variable "lab_domain" {
   type        = string
   default     = "trivadislabs.com"
 }
-# --- EOF -------------------------------------------------------------------
+# --- EOF ----------------------------------------------------------------------

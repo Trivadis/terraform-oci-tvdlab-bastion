@@ -1,24 +1,24 @@
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: main.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Main file to use terraform module tvdlab bastion.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 terraform {
   required_providers {
     oci = {
-      source  = "hashicorp/oci"
-      version = "3.96.0"
+      source  = "oracle/oci"
+      version = ">= 4.0.0"
     }
   }
 }
@@ -36,4 +36,4 @@ output "bastion_public_ip" {
   description = "The public IP address of the bastion server instances."
   value       = module.tvdlab-bastion.bastion_public_ip
 }
-# --- EOF -------------------------------------------------------------------
+# --- EOF ----------------------------------------------------------------------
