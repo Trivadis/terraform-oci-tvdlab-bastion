@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.4] - 2023-04-19
+
+### Fixed
+
+- change file type for upload *post_bootstrap_config* in *compute.tf*
+
 ## [3.0.3] - 2023-04-19
 
 ### Changed
