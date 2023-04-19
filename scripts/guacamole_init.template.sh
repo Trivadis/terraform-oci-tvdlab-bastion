@@ -53,7 +53,8 @@ exec 2>&1                       # Redirect standard error to standard out
 
 # - Main -----------------------------------------------------------------------
 echo "INFO: Start to initialize the guacamole stack at $(date)" 
-
+# set the bootstrap config status to running
+echo "running" >/etc/boostrap_config_status
 # get latest release of docker-compose
 if ! command -v docker-compose &> /dev/null; then
     DOCKER_COMPOSE_URL=$(curl -sL https://api.github.com/repos/docker/compose/releases/latest | jq -r '.assets[].browser_download_url'|grep -iE "$(uname -s)-$(uname -m)$")
@@ -85,6 +86,8 @@ if [ ! -d "/home/$GUACAMOLE_USER/guacamole" ]; then
     sed -i "s|^OPENVPN_PORT=.*|OPENVPN_PORT=$VPN_PORT|" /home/$GUACAMOLE_USER/guacamole/.env
 else
     echo "ERR : /home/$GUACAMOLE_USER/guacamole already exists ..."
+    # set the bootstrap config status to error
+    echo "error" >/etc/boostrap_config_status
     exit 1
 fi
 
@@ -153,6 +156,8 @@ LOAD5=\$(cat /proc/loadavg | awk {'print \$2'})
 LOAD15=\$(cat /proc/loadavg | awk {'print \$3'})
 PUBLIC_IP=\$(dig +short myip.opendns.com @resolver1.opendns.com)
 export PRIVATE_IP=\$(hostname -I |cut -d' ' -f1)
+
+# cloud-init status information
 BOOTSTRAP_STATUS1=\$((sudo cloud-init status 2>/dev/null|| echo "n/a")|cut -d' ' -f2|sed 's/ //g')
 BOOTSTRAP_STATUS2=\$(cat /etc/boostrap_config_status 2>/dev/null|| echo "n/a")
 
@@ -181,5 +186,14 @@ EOF
 
 # remove failing bash completion for docker-compose
 rm -vf /etc/bash_completion.d/docker-compose
+
+# check if we do have an error in the log file
+if [ $(grep -iE 'error|err' $LOGFILE|wc -l) -ne 0 ]; then 
+    echo "error" >/etc/boostrap_config_status
+else
+    echo "done" >/etc/boostrap_config_status
+fi
+
+# set the bootstrap config status to done
 echo "INFO: Finish the configuration of the guacamole stack at $(date)" 
 # --- EOF -----------------------------------------------------------------------
