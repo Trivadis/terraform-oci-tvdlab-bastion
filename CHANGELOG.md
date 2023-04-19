@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.3] - 2023-04-19
+
+### Changed
+
+- replace *motd* by *login-info.sh* and add a comprehensive logon header
+
 ## [3.0.2] - 2023-04-19
 
 ### Changed
