@@ -136,18 +136,47 @@ sed -i 's|.*Banner.*|Banner /etc/ssh/Banner|g' /etc/ssh/sshd_config
 systemctl reload sshd
 
 # add a login banner
-echo "INFO: Configure login banner"
-cp -v /etc/motd /etc/motd.orig
-cat << EOF >/etc/motd
---------------------------------------------------------------------
--
-- Welcome to the bastion / jump host for the OCI environment
-- hostname          :   $HOSTNAME.$DOMAINNAME
-- Public IP         :   $(dig +short myip.opendns.com @resolver1.opendns.com)
-- Guacamole Console :   $GUACAMOLE_CONSOLE
-- Guacamole Admin   :   $GUACADMIN_USER
-- Guacamole Password:   $GUACADMIN_PASSWORD
+echo "INFO: Configure login information"
 
+cat << EOF >/etc/profile.d/login-info.sh
+#! /usr/bin/env bash
+
+# Basic info
+HOSTNAME=\$(uname -n)
+ROOT=\$(df -Ph | grep root| awk '{print \$4}' | tr -d '\n')
+
+# System load
+MEMORY1=\$(free -t -m | grep Total | awk '{print \$3" MB";}')
+MEMORY2=\$(free -t -m | grep "Mem" | awk '{print \$2" MB";}')
+LOAD1=\$(cat /proc/loadavg | awk {'print \$1'})
+LOAD5=\$(cat /proc/loadavg | awk {'print \$2'})
+LOAD15=\$(cat /proc/loadavg | awk {'print \$3'})
+PUBLIC_IP=\$(dig +short myip.opendns.com @resolver1.opendns.com)
+export PRIVATE_IP=\$(hostname -I |cut -d' ' -f1)
+BOOTSTRAP_STATUS1=\$((sudo cloud-init status 2>/dev/null|| echo "n/a")|cut -d' ' -f2|sed 's/ //g')
+BOOTSTRAP_STATUS2=\$(cat /etc/boostrap_config_status 2>/dev/null|| echo "n/a")
+
+echo "
+===============================================================================
+- Welcome to the bastion / jump host for the OCI environment
+-------------------------------------------------------------------------------
+- Hostname..........: \$HOSTNAME.$DOMAINNAME
+- Public IP.........: \$PUBLIC_IP
+- Private IP........: \$PRIVATE_IP
+-------------------------------------------------------------------------------
+- Disk Space........: \$ROOT remaining
+- CPU usage.........: \$LOAD1, \$LOAD5, \$LOAD15 (1, 5, 15 min)
+- Memory used.......: \$MEMORY1 / \$MEMORY2
+- Swap in use.......: \$(free -m | tail -n 1 | awk '{print \$3}') MB
+-------------------------------------------------------------------------------
+- Bootstrap Status..: \$BOOTSTRAP_STATUS1
+- Config Status.....: \$BOOTSTRAP_STATUS2
+-------------------------------------------------------------------------------
+- Guacamole Console : $GUACAMOLE_CONSOLE
+- Guacamole Admin   : $GUACADMIN_USER
+- Guacamole Password: $GUACADMIN_PASSWORD
+===============================================================================
+"
 EOF
 
 # remove failing bash completion for docker-compose
