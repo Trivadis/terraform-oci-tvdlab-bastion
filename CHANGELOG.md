@@ -16,6 +16,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.2] - 2023-04-19
+
+### Changed
+
+- update terreform required version to *1.0.0*
+
+## [3.0.1] - 2023-04-19
+
+### Changed
+
+- update example and add module constrain
+- update provider information in exampl *main.tf*
+
 ## [3.0.0] - 2023-04-18
 
 ### Added

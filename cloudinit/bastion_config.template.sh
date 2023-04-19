@@ -6,7 +6,7 @@
 # Name.......: bastion_config.template.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Script to configure the bastion host after bootstrap
 # Notes......: --

@@ -5,7 +5,7 @@
 # Name.......: variables.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Variable file for the terraform module tvdlab bastion.
 # Notes......: -- 

@@ -1,18 +1,18 @@
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: outputs.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Output for the terraform module tvdlab bastion.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 # display public IPs jumphost
 output "bastion_id" {
@@ -48,4 +48,4 @@ output "bastion_public_url" {
   description = "Bastion Apache Guacammole URL."
   value       = formatlist("http://%s.${var.lab_domain}/guacamole", oci_core_instance.bastion[*].hostname_label)
 }
-# --- EOF -------------------------------------------------------------------
+# --- EOF ----------------------------------------------------------------------

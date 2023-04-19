@@ -5,7 +5,7 @@
 # Name.......: bastion.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Configuration to build the training bastion host using tvdlab-bastion.
 # Notes......: 
@@ -14,8 +14,11 @@
 #              at http://www.apache.org/licenses/
 # ------------------------------------------------------------------------------
 module "tvdlab-bastion" {
-  source  = "Trivadis/tvdlab-bastion/oci"
-  version = ">= 3.0.0" # to limit module version specifiy upper / lower version = ">= 0.5.0, < 2.0.0"
+  source = "Trivadis/tvdlab-bastion/oci"
+  # limit module version using ~>, allows only the rightmost version component to increment
+  # e.g. 3.0.5 and 3.0.10 but not 3.1.0 see
+  # https://developer.hashicorp.com/terraform/language/expressions/version-constraints
+  version = "~> 3.0.0"
 
   # - Mandatory Parameters -----------------------------------------------------
   compartment_id = var.compartment_ocid               # OCID of the compartment where to create all resources

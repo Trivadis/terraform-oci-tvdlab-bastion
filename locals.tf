@@ -1,18 +1,18 @@
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Name.......: locals.tf
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
-# Date.......: 2023.03.09
+# Date.......: 2023.04.19
 # Revision...: 
 # Purpose....: Local variables for the terraform module tvdlab vcn.
 # Notes......: -- 
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
 #              at http://www.apache.org/licenses/
-# ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 locals {
   dns_registration    = data.oci_dns_rrset.lab_domain.id == null ? false : var.bastion_dns_registration
@@ -37,4 +37,4 @@ locals {
   # define and render cloudinit bootstrap configuration
   bootstrap_cloudinit_template = var.bootstrap_cloudinit_template == "" ? "${path.module}/cloudinit/${local.default_bootstrap_template_name}" : var.bootstrap_cloudinit_template
 }
-# --- EOF -------------------------------------------------------------------
+# --- EOF ----------------------------------------------------------------------
