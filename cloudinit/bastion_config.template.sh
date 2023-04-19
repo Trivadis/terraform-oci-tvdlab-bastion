@@ -23,14 +23,9 @@ HOST=${HOST:-$(hostname)}
 export SCRIPT_NAME=$(basename $0)               # script name
 export SCRIPT_BIN_DIR=$(dirname $0)             # script bin directory
 # define logfile and logging
-export LOG_BASE=${LOG_BASE:-"$SCRIPT_BIN_DIR"}  # Use script directory as default logbase
-# Define Logfile but first reset LOG_BASE if directory does not exists
-if [ ! -d ${LOG_BASE} ] || [ ! -w ${LOG_BASE} ] ; then
-    echo "INFO : set LOG_BASE to /tmp"
-    export LOG_BASE="/tmp"
-fi
-TIMESTAMP=$(date "+%Y.%m.%d_%H%M%S")
-readonly LOGFILE="$LOG_BASE/$(basename $SCRIPT_NAME .sh)_$TIMESTAMP.log"
+export LOG_BASE="/var/log"                      # Use script directory as default logbase
+TIMESTAMP=$(date "+%Y.%m.%d_%H%M%S")            # timestamp used for the log file
+readonly LOGFILE="$LOG_BASE/$(basename $SCRIPT_NAME .sh)_$TIMESTAMP.log" # absolute logfile name
 # - EOF Default Values ---------------------------------------------------------
 
 # - Initialization -------------------------------------------------------------
