@@ -16,6 +16,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.8] - 2023-04-24
+
+### Added
+
+- add a check if script *guacamole_init.sh* is still running and status of
+  *boostrap_custom_config_status* is set to **running**. If no login banner will
+  report an error
+
+### Changed
+
+- change file headers in *bastion_host_ol7.yaml* and *bastion_host_ol8.yaml*
+
+### Removed
+
+- remove file *bastion_host.yaml*
+
 ## [3.0.7] - 2023-04-22
 
 ### Changed
