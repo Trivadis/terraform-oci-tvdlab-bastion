@@ -3,12 +3,12 @@
 # Trivadis - Part of Accenture, Platform Factory - Data Platforms
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ------------------------------------------------------------------------------
-# Name.......: bastion_host.yaml 
+# Name.......: bastion_host_ol8.yaml 
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@accenture.com
 # Editor.....: Stefan Oehrli
 # Date.......: 2023.04.19
 # Revision...: 
-# Purpose....: cloud-init configuration file for bastion hosts
+# Purpose....: cloud-init configuration file for bastion hosts based on OL8
 # Notes......: --
 # Reference..: --
 # License....: Apache License Version 2.0, January 2004 as shown
