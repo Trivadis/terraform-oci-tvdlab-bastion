@@ -53,6 +53,60 @@ exec 2>&1                       # Redirect standard error to standard out
 
 # - Main -----------------------------------------------------------------------
 echo "INFO: Start to initialize the guacamole stack at $(date)" 
+
+# add a login banner
+echo "INFO: Configure login information"
+
+cat << EOF >/etc/profile.d/login-info.sh
+#! /usr/bin/env bash
+
+# Basic info
+HOSTNAME=\$(uname -n)
+ROOT=\$(df -Ph / | sed 1d | awk '{print \$4}' | tr -d '\n')
+
+# System load
+MEMORY1=\$(free -t -m | grep Total | awk '{print \$3" MB";}')
+MEMORY2=\$(free -t -m | grep "Mem" | awk '{print \$2" MB";}')
+LOAD1=\$(cat /proc/loadavg | awk {'print \$1'})
+LOAD5=\$(cat /proc/loadavg | awk {'print \$2'})
+LOAD15=\$(cat /proc/loadavg | awk {'print \$3'})
+PUBLIC_IP=\$(dig +short myip.opendns.com @resolver1.opendns.com)
+export PRIVATE_IP=\$(hostname -I |cut -d' ' -f1)
+
+# cloud-init status information
+BOOTSTRAP_STATUS1=\$((sudo cloud-init status 2>/dev/null|| echo "n/a")|cut -d' ' -f2|sed 's/ //g')
+BOOTSTRAP_STATUS2=\$(cat /var/log/bootstrap_custom_config_status 2>/dev/null|| echo "n/a")
+BOOTSTRAP_CURRENT=\$(ps -ef|grep bootstrap_linux_host.sh|grep -iv grep|wc -l)
+if [[ "\$BOOTSTRAP_STATUS2" == *"running"* ]] && [ \$BOOTSTRAP_CURRENT -eq 0 ]; then
+  BOOTSTRAP_STATUS2=\$(echo "\$BOOTSTRAP_STATUS2" | sed "s/running/error/g")
+fi
+
+echo "
+===============================================================================
+- Welcome to the bastion / jump host for the OCI environment
+-------------------------------------------------------------------------------
+- Hostname..........: \$HOSTNAME.$DOMAINNAME
+- Public IP.........: \$PUBLIC_IP
+- Private IP........: \$PRIVATE_IP
+-------------------------------------------------------------------------------
+- Disk Space........: \$ROOT remaining
+- CPU usage.........: \$LOAD1, \$LOAD5, \$LOAD15 (1, 5, 15 min)
+- Memory used.......: \$MEMORY1 / \$MEMORY2
+- Swap in use.......: \$(free -m | tail -n 1 | awk '{print \$3}') MB
+-------------------------------------------------------------------------------
+- Bootstrap Status..: \$BOOTSTRAP_STATUS1
+- Config Status.....: \$BOOTSTRAP_STATUS2
+-------------------------------------------------------------------------------
+- Guacamole Console : $GUACAMOLE_CONSOLE
+- Guacamole Admin   : $GUACADMIN_USER
+- Guacamole Password: $GUACADMIN_PASSWORD
+===============================================================================
+"
+EOF
+
+# update bash profile
+echo "alias li='bash /etc/profile.d/login-info.sh'" >>/home/$GUACAMOLE_USER/.bash_profile
+
 # set the bootstrap config status to running
 echo "running" >/var/log/bootstrap_custom_config_status
 # get latest release of docker-compose
@@ -137,56 +191,6 @@ sed -i 's/.*HostBasedAuthentication.*/HostBasedAuthentication no/gi' /etc/ssh/ss
 sed -i 's/.*PermitRootLogin.*/PermitRootLogin no/g' /etc/ssh/sshd_config
 sed -i 's|.*Banner.*|Banner /etc/ssh/Banner|g' /etc/ssh/sshd_config
 systemctl reload sshd
-
-# add a login banner
-echo "INFO: Configure login information"
-
-cat << EOF >/etc/profile.d/login-info.sh
-#! /usr/bin/env bash
-
-# Basic info
-HOSTNAME=\$(uname -n)
-ROOT=\$(df -Ph / | sed 1d | awk '{print \$4}' | tr -d '\n')
-
-# System load
-MEMORY1=\$(free -t -m | grep Total | awk '{print \$3" MB";}')
-MEMORY2=\$(free -t -m | grep "Mem" | awk '{print \$2" MB";}')
-LOAD1=\$(cat /proc/loadavg | awk {'print \$1'})
-LOAD5=\$(cat /proc/loadavg | awk {'print \$2'})
-LOAD15=\$(cat /proc/loadavg | awk {'print \$3'})
-PUBLIC_IP=\$(dig +short myip.opendns.com @resolver1.opendns.com)
-export PRIVATE_IP=\$(hostname -I |cut -d' ' -f1)
-
-# cloud-init status information
-BOOTSTRAP_STATUS1=\$((sudo cloud-init status 2>/dev/null|| echo "n/a")|cut -d' ' -f2|sed 's/ //g')
-BOOTSTRAP_STATUS2=\$(cat /var/log/bootstrap_custom_config_status 2>/dev/null|| echo "n/a")
-BOOTSTRAP_CURRENT=\$(ps -ef|grep bootstrap_linux_host.sh|grep -iv grep|wc -l)
-if [[ "\$BOOTSTRAP_STATUS2" == *"running"* ]] && [ \$BOOTSTRAP_CURRENT -eq 0 ]; then
-  BOOTSTRAP_STATUS2=\$(echo "\$BOOTSTRAP_STATUS2" | sed "s/running/error/g")
-fi
-
-echo "
-===============================================================================
-- Welcome to the bastion / jump host for the OCI environment
--------------------------------------------------------------------------------
-- Hostname..........: \$HOSTNAME.$DOMAINNAME
-- Public IP.........: \$PUBLIC_IP
-- Private IP........: \$PRIVATE_IP
--------------------------------------------------------------------------------
-- Disk Space........: \$ROOT remaining
-- CPU usage.........: \$LOAD1, \$LOAD5, \$LOAD15 (1, 5, 15 min)
-- Memory used.......: \$MEMORY1 / \$MEMORY2
-- Swap in use.......: \$(free -m | tail -n 1 | awk '{print \$3}') MB
--------------------------------------------------------------------------------
-- Bootstrap Status..: \$BOOTSTRAP_STATUS1
-- Config Status.....: \$BOOTSTRAP_STATUS2
--------------------------------------------------------------------------------
-- Guacamole Console : $GUACAMOLE_CONSOLE
-- Guacamole Admin   : $GUACADMIN_USER
-- Guacamole Password: $GUACADMIN_PASSWORD
-===============================================================================
-"
-EOF
 
 # remove failing bash completion for docker-compose
 rm -vf /etc/bash_completion.d/docker-compose
