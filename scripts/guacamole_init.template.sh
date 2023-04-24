@@ -162,7 +162,7 @@ BOOTSTRAP_STATUS1=\$((sudo cloud-init status 2>/dev/null|| echo "n/a")|cut -d' '
 BOOTSTRAP_STATUS2=\$(cat /var/log/bootstrap_custom_config_status 2>/dev/null|| echo "n/a")
 BOOTSTRAP_CURRENT=\$(ps -ef|grep bootstrap_linux_host.sh|grep -iv grep|wc -l)
 if [[ "\$BOOTSTRAP_STATUS2" == *"running"* ]] && [ \$BOOTSTRAP_CURRENT -eq 0 ]; then
-  BOOTSTRAP_STATUS2=\${BOOTSTRAP_STATUS2//running/error}
+  BOOTSTRAP_STATUS2=\$(echo "\$BOOTSTRAP_STATUS2" | sed "s/running/error/g")
 fi
 
 echo "
