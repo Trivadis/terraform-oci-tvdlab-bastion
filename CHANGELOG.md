@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.11] - 2023-04-24
+
+### Changed
+
+- rename *boostrap_custom_config_status* to *bootstrap_custom_config_status*
+
 ## [3.0.10] - 2023-04-24
 
 ### Fixed
