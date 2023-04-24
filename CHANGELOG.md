@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.14] - 2023-04-24
+
+### Changed
+
+- Update guacamole info in *guacamole_init.template.sh* at the end of the script
+
 ## [3.0.13] - 2023-04-24
 
 ### Changed
