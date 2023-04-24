@@ -195,6 +195,10 @@ systemctl reload sshd
 # remove failing bash completion for docker-compose
 rm -vf /etc/bash_completion.d/docker-compose
 
+# update Guacamole Information
+sed -i "s|- Guacamole Consol.*|- Guacamole Console : $GUACAMOLE_CONSOLE|" /etc/profile.d/login-info.sh
+sed -i "s|- Guacamole Password.*|- Guacamole Password: $GUACADMIN_PASSWORD|" /etc/profile.d/login-info.sh
+
 # check if we do have an error in the log file
 if [ $(grep -iE 'error|err' $LOGFILE|wc -l) -ne 0 ]; then 
     echo "error" >/var/log/bootstrap_custom_config_status
