@@ -146,7 +146,7 @@ cat << EOF >/etc/profile.d/login-info.sh
 
 # Basic info
 HOSTNAME=\$(uname -n)
-ROOT=\$(df -Ph | grep root| awk '{print \$4}' | tr -d '\n')
+ROOT=\$(df -Ph / | sed 1d | awk '{print \$4}' | tr -d '\n')
 
 # System load
 MEMORY1=\$(free -t -m | grep Total | awk '{print \$3" MB";}')
