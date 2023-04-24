@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - rename *boostrap_custom_config_status* to *bootstrap_custom_config_status*
+- explicitly select */* when calculating remaining space
 
 ## [3.0.10] - 2023-04-24
 
