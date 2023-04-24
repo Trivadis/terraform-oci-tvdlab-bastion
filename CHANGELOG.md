@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.13] - 2023-04-24
+
+### Changed
+
+- Change order in bootstrap init file *guacamole_init.template.sh*
+
 ## [3.0.12] - 2023-04-24
 
 ### Fixed
