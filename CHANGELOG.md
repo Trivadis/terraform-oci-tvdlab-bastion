@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.10] - 2023-04-24
+
+### Fixed
+
+- correctly escape variables in *guacamole_init.template.sh*
+
 ## [3.0.9] - 2023-04-24
 
 ### Fixed
