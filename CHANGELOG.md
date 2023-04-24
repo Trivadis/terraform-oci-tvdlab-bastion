@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.12] - 2023-04-24
+
+### Fixed
+
+- Remove *{}* to fix terraform call to function *templatefile*
+
 ## [3.0.11] - 2023-04-24
 
 ### Changed
