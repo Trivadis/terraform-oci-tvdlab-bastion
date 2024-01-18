@@ -120,6 +120,9 @@ if ! command -v docker-compose &> /dev/null; then
     docker-compose --version
 fi
 
+# remove wrong basch completion for docker-compose
+rm -vf /etc/bash_completion.d/docker-compose
+
 # fix permisions
 echo "INFO: Change permissions for /home/$GUACAMOLE_USER to $GUACAMOLE_USER" 
 chown -R $GUACAMOLE_USER:$GUACAMOLE_USER /home/$GUACAMOLE_USER
