@@ -16,6 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [3.0.15] - 2024-01-18
+
+### Changed
+
+- Add command to remove wrong bash completion for docker-compose in *guacamole_init.template.sh*
+- Add installation for docker-ce-cli, containerd.io, docker-buildx-plugin and docker-compose-plugin in bastion_host_ol7.yaml
+- Add installation for docker-ce-cli, containerd.io, docker-buildx-plugin and docker-compose-plugin in bastion_host_ol8.yaml
+
 ## [3.0.14] - 2023-04-24
 
 ### Changed

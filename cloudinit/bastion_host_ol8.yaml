@@ -98,7 +98,7 @@ runcmd:
 # configure tools from development repositories
   - dnf config-manager --set-enabled ol8_developer --set-enabled ol8_developer_EPEL
   - dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-  - dnf install -y pwgen fail2ban docker-ce
+  - dnf install -y pwgen fail2ban docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # configure automatic download / updates
   - dnf install -y dnf-automatic
