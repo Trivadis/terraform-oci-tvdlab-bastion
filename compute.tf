@@ -31,6 +31,11 @@ resource "oci_core_instance" "bastion" {
     hostname_label   = var.label_prefix == "none" ? format("${local.resource_shortname}-${var.bastion_name}%02d", count.index) : format("${var.label_prefix}-${local.resource_shortname}-${var.bastion_name}%02d", count.index)
   }
 
+  instance_options {
+    # disable the legacy (/v1) instance metadata service endpoints 
+    are_legacy_imds_endpoints_disabled = true
+  }
+
   # prevent the bastion from destroying and recreating itself if the image ocid changes 
   lifecycle {
     ignore_changes = [source_details[0].source_id]
